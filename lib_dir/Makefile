@@ -23,7 +23,7 @@ $(TRG): $(BLD)
 
 # compilation des fichier .o
 $(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp
-	$(CC) -c $^ -o $@ $(CFlags)
+	$(CC) -c $^ -o $@ $(CFlags) -I$(INC_DIR)
 
 # supprimer les fichiers de build
 clean:
