@@ -2,11 +2,16 @@
 
 Game::Game() :
     currentRoom_(nullptr),
-    isRunning_(false) { }
+    isRunning_(false) {
+}
 
-Game::Game(Room &defaultRoom) :
+Game::Game(Room &defaultRoom, const std::string &name) :
     currentRoom_(&defaultRoom),
-    isRunning_(true) { }
+    name_(name),
+    isRunning_(true) {
+        std::cout << ">>> " << name_ << " <<<" << std::endl << std::endl;
+        processCommande("look");
+}
 
 std::string Game::getUserInput() {
     std::cout << std::endl;
