@@ -3,3 +3,6 @@
 
 # static library
 *.a
+
+# .vscode env
+.vscode/
