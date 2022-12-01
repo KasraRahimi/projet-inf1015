@@ -14,7 +14,7 @@ private:
     Room* currentRoom_;
     bool isRunning_;
 
-    void changeRoom();
+    void changeRoom(Direction side);
     void printCurrentRoom();
     void printNeighboringRoom(const Room* ptrRoom, Direction side);
     std::vector<std::string> stringToVectorOfWords(std::string sentence);
