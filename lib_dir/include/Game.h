@@ -18,5 +18,6 @@ private:
     void printCurrentRoom();
     void printAllNeighbors();
     void printNeighbor(Direction side);
+    void printUnknownCommand();
     std::vector<std::string> stringToVectorOfWords(std::string sentence);
 };
