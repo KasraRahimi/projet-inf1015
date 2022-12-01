@@ -1,10 +1,5 @@
-# everything
-*
+# object files
+*.o
 
-# except
-!*.cpp
-!*.h
-!Makefile
-!*/
-!*.md
-!.gitignore
+# static library
+*.a
