@@ -13,13 +13,16 @@ class Room {
 public:
     Room();
     Room(std::string name, std::string description, bool isLocked=false);
-    void addRoom(std::shared_ptr<Room> room, Direction side);
+    void addRoom(Room &room, Direction side);
     std::string getName();
     std::string getDescription();
-    std::shared_ptr<Room> getAdjacentRoom(Direction side);
+    Room* getAdjacentRoom(Direction side);
     bool isLocked();
 private:
     std::string name_, description_;
-    std::shared_ptr<Room> northRoom_, eastRoom_, southRoom_, westRoom_;
+    Room* northRoom_;
+    Room* eastRoom_;
+    Room* southRoom_;
+    Room* westRoom_;
     bool isLocked_;
 };
