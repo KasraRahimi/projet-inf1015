@@ -15,7 +15,9 @@ public:
     Room(std::string name, std::string description, bool isLocked=false);
     void addRoom(Room &room, Direction side);
     std::string getName() const;
+    void setName(std::string newName);
     std::string getDescription() const;
+    void setDescription(std::string newDescription);
     Room* getAdjacentRoomPtr(Direction side) const;
     bool isLocked() const;
 private:
