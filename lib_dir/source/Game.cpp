@@ -1,10 +1,12 @@
 #include "Game.h"
 
 Game::Game() :
-    currentRoom_(nullptr) { }
+    currentRoom_(nullptr),
+    isRunning_(false) { }
 
 Game::Game(Room &defaultRoom) :
-    currentRoom_(&defaultRoom) { }
+    currentRoom_(&defaultRoom),
+    isRunning_(true) { }
 
 std::string Game::getUserInput() {
     std::cout << std::endl;
