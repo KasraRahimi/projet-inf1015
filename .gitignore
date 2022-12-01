@@ -1,0 +1,10 @@
+# everything
+*
+
+# except
+!*.cpp
+!*.h
+!Makefile
+!*/
+!*.md
+!.gitignore
