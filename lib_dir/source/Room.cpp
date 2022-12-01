@@ -17,3 +17,24 @@ Room::Room(std::string name, std::string description, bool isLocked) :
     eastRoom_(nullptr),
     southRoom_(nullptr),
     westRoom_(nullptr) {}
+
+void Room::addRoom(Room &room, Direction side) {
+    switch (side) {
+        case Direction::NORTH:
+            northRoom_ = &room;
+            room.southRoom_ = this;
+            break;
+        case Direction::EAST:
+            eastRoom_ = &room;
+            room.westRoom_ = this;
+            break;
+        case Direction::SOUTH:
+            southRoom_ = &room;
+            room.northRoom_ = this;
+            break;
+        case Direction::WEST:
+            westRoom_ = &room;
+            room.eastRoom_ = this;
+            break;
+    }
+}
