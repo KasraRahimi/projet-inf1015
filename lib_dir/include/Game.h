@@ -16,6 +16,7 @@ private:
 
     void changeRoom(Direction side);
     void printCurrentRoom();
-    void printNeighboringRoom(const Room* ptrRoom, Direction side);
+    void printAllNeighbors();
+    void printNeighbor(Direction side);
     std::vector<std::string> stringToVectorOfWords(std::string sentence);
 };
