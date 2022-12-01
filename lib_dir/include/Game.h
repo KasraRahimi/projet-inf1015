@@ -4,7 +4,7 @@
 class Game {
 public:
     Game();
-    Game(Room defaultRoom);
+    Game(Room &defaultRoom);
     std::string getUserInput();
     void changeRoom();
     void printCurrentRoom();
