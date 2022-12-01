@@ -43,8 +43,16 @@ std::string Room::getName() const {
     return name_;
 }
 
+void Room::setName(std::string newName) {
+    name_ = newName;
+}
+
 std::string Room::getDescription() const {
     return description_;
+}
+
+void Room::setDescription(std::string newDescription) {
+    description_ = newDescription;
 }
 
 Room* Room::getAdjacentRoomPtr(Direction side) const {
