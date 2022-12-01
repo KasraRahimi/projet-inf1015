@@ -38,3 +38,32 @@ void Room::addRoom(Room &room, Direction side) {
             break;
     }
 }
+
+std::string Room::getName() const {
+    return name_;
+}
+
+std::string Room::getDescription() const {
+    return description_;
+}
+
+Room* Room::getAdjacentRoomPtr(Direction side) const {
+    switch (side) {
+        case Direction::NORTH:
+            return northRoom_;
+            break;
+        case Direction::EAST:
+            return eastRoom_;
+            break;
+        case Direction::SOUTH:
+            return southRoom_;
+            break;
+        case Direction::WEST:
+            return westRoom_;
+            break;
+    }
+}
+
+bool Room::isLocked() const {
+    return isLocked;
+}
