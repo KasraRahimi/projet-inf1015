@@ -12,12 +12,14 @@ int main() {
     Room bedroom("Bedroom",
         "The bedroom is large. It has a bed and a desk. Your closet can be found here.");
 
-    
     livingRoom.addRoom(kitchen, Direction::NORTH);
     livingRoom.addRoom(hallway, Direction::EAST);
     hallway.addRoom(bathroom, Direction::SOUTH);
     hallway.addRoom(bedroom, Direction::NORTH);
-    Game game(livingRoom);
+
+    const std::string name = "INF1015 KAWA & IMANE'S ROOM ADVENTURE";
+    Game game(livingRoom, name);
+
     while (game.isRunning()) {
         std::string command = game.getUserInput();
         game.processCommande(command);
