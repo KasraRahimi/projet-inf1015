@@ -12,11 +12,11 @@ Room::Room() :
 Room::Room(std::string name, std::string description, bool isLocked) :
     name_(name),
     description_(description),
-    isLocked_(isLocked),
     northRoom_(nullptr),
     eastRoom_(nullptr),
     southRoom_(nullptr),
-    westRoom_(nullptr) {}
+    westRoom_(nullptr),
+    isLocked_(isLocked) {}
 
 void Room::addRoom(Room &room, Direction side) {
     switch (side) {
@@ -61,9 +61,12 @@ Room* Room::getAdjacentRoomPtr(Direction side) const {
         case Direction::WEST:
             return westRoom_;
             break;
+        default:
+            return nullptr;
+            break;
     }
 }
 
 bool Room::isLocked() const {
-    return isLocked;
+    return isLocked_;
 }
