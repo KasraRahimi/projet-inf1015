@@ -5,13 +5,14 @@
 class Game {
 public:
     Game();
-    Game(Room &defaultRoom);
+    Game(Room &defaultRoom, const std::string &name);
     std::string getUserInput();
     void processCommande(std::string command);
 
     bool isRunning() const;
 private:
     Room* currentRoom_;
+    const std::string name_;
     bool isRunning_;
 
     void changeRoom(Direction side);
