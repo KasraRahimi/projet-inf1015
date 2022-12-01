@@ -9,7 +9,7 @@ public:
     std::string getUserInput();
     void processCommande(std::string command);
 
-    bool isRunning_() const;
+    bool isRunning() const;
 private:
     Room* currentRoom_;
     bool isRunning_;
