@@ -96,23 +96,30 @@ void Game::processCommande(std::string command) {
             std::string direction = instruction[1];
             Room* ptrCurrentRoom = currentRoom_;
 
-            if (direction == "N")
+            std::string output;
+            if (direction == "N") {
                 changeRoom(Direction::NORTH);
-            else if (direction == "E")
+                output = "going North";
+            } else if (direction == "E") {
                 changeRoom(Direction::EAST);
-            else if (direction == "S")
+                output = "going East";
+            } else if (direction == "S") {
                 changeRoom(Direction::SOUTH);
-            else if (direction == "W")
+                output = "going South";
+            } else if (direction == "W") {
                 changeRoom(Direction::WEST);
-            else {
+                output = "going West";
+            } else {
                 printUnknownCommand();
                 return;
             }
 
             if (currentRoom_ == ptrCurrentRoom)
                 std::cout << "cannot go there" << std::endl;
-            else
+            else {
+                std::cout << output << std::endl;
                 printCurrentRoom();
+            }
     
         } else if (action == "quit" && nArguments == 1)
             isRunning_ = false;
