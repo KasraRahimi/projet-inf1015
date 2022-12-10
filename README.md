@@ -6,3 +6,14 @@ D'abord, on a un dossier pour la librairie. Ne pas toucher les dossiers *lib_dir
 
 ## l'exécutable
 Le fichier ``main.cpp`` se trouve dans *exec_dir*. Pour compiler l'exécutable, il faut juste faire ``make``. Pour simplifier l'exécution, tu peux faire ``make run``. Ce dernier va compiler l'exécutable et ensuite l'exécuter.
+
+## Opérations du jeux :
+* <kbd>go [chosen direction]</kbd> -  l'utilisateur se déplace vers la direction spécifiée
+
+  * <kbd>N</kbd> - vers le Nord
+  * <kbd>S</kbd> - vers le Sud
+  * <kbd>W</kbd> - vers l'Ouest
+  * <kbd>E</kbd> - vers l'Est
+
+* <kbd>look</kbd> - re-affiche la description de la pièce dans laquelle se trouve l'utilisateur, ainsi que les directions qu'il peut emprunter pour son prochain déplacement
+* <kbd>quit</kbd> - fin du jeux
