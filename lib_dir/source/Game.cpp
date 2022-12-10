@@ -9,7 +9,7 @@ Game::Game(Room &defaultRoom, const std::string &name) :
     currentRoom_(&defaultRoom),
     name_(name),
     isRunning_(true) {
-        std::cout << "\033[96m>>> " << name_ << " <<<\033[00m" << std::endl << std::endl;
+        std::cout << CYAN << ">>> " << name_ << " <<<" << COLOR_LESS << std::endl << std::endl;
         processCommande("look");
 }
 
@@ -122,7 +122,7 @@ void Game::processCommande(std::string command) {
             }
     
         } else if (action == "quit" && nArguments == 1) {
-            std::cout << "\033[91mThank you for your visit!\nNow leaving...\n\n\033[00" << std::endl;
+            std::cout << RED << "Thank you for your visit!\nNow leaving...\n\n" << COLOR_LESS << std::endl;
             isRunning_ = false;
         } else {
             printUnknownCommand();
@@ -135,5 +135,5 @@ bool Game::isRunning() const {
 }
 
 void Game::printUnknownCommand() {
-    std::cout << "\033[91munknown command\033[00m" << std::endl << std::endl;
+    std::cout << RED << "unknown command" << COLOR_LESS << std::endl << std::endl;
 }

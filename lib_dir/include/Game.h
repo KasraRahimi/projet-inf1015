@@ -1,6 +1,9 @@
 #pragma once
 #include "Room.h"
 #include <vector>
+#define CYAN "\033[96m"
+#define RED "\033[91m"
+#define COLOR_LESS "\033[00m"
 
 class Game {
 public:
