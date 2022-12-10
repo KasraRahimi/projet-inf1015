@@ -10,6 +10,7 @@ INC_DIR=-I../lib_dir/include
 LIB=-lProjet
 SRC=main.cpp
 TRG=$(SRC:.cpp=)
+DBG=$(SRC:.cpp=_dbg)
 
 # l'executable
 all: $(TRG)
@@ -22,6 +23,14 @@ $(TRG): $(SRC)
 run: $(TRG)
 	./$^
 
+#compile debuggable executable
+$(DBG): $(SRC)
+	$(CC) -g $^ -static -o $@ $(LIB) $(LIB_DIR) $(INC_DIR)
+
+#run debugger
+debug: $(DBG)
+	gdb $<
+
 # supprimer l'executable
 clean:
-	rm -f $(TRG)
+	rm -f $(TRG) $(DBG)
