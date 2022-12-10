@@ -11,14 +11,17 @@ int main() {
         "The bathroom has a toilet and a bathtub. It's rather small.");
     Room bedroom("Bedroom",
         "The bedroom is large. It has a bed and a desk. Your closet can be found here.");
+    Room foyer("Foyer",
+        "The foyer is at the entrance of the house. There are many more rooms to explore!");
 
+    foyer.addRoom(livingRoom, Direction::NORTH);
     livingRoom.addRoom(kitchen, Direction::NORTH);
     livingRoom.addRoom(hallway, Direction::EAST);
     hallway.addRoom(bathroom, Direction::SOUTH);
     hallway.addRoom(bedroom, Direction::NORTH);
 
     const std::string name = "INF1015 KASRA & IMANE'S ROOM ADVENTURE";
-    Game game(livingRoom, name);
+    Game game(foyer, name);
 
     while (game.isRunning()) {
         std::string command = game.getUserInput();
