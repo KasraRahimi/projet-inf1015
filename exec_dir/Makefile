@@ -1,6 +1,6 @@
 # compilateur
 CC=g++
-CFlags=-Wall
+CFlags=-Wall -std=c++17
 
 # les dossiers
 LIB_DIR=-L../lib_dir/target

@@ -1,5 +1,5 @@
 # compilateur
-CC=g++
+CC=g++ -std=c++17
 CFlags=-Wall
 
 # les dosiers
