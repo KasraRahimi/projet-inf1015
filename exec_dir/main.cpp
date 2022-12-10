@@ -17,7 +17,7 @@ int main() {
     hallway.addRoom(bathroom, Direction::SOUTH);
     hallway.addRoom(bedroom, Direction::NORTH);
 
-    const std::string name = "INF1015 KAWA & IMANE'S ROOM ADVENTURE";
+    const std::string name = "INF1015 KASRA & IMANE'S ROOM ADVENTURE";
     Game game(livingRoom, name);
 
     while (game.isRunning()) {
