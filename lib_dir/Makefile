@@ -19,10 +19,12 @@ all: $(TRG)
 
 # compilation de la librairie statique
 $(TRG): $(BLD)
+	mkdir -p $(TRG_DIR)
 	ar crs $@ $^
 
 # compilation des fichier .o
 $(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp
+	mkdir -p $(BLD_DIR)
 	$(CC) -g -c $^ -o $@ $(CFlags) -I$(INC_DIR)
 
 # supprimer les fichiers de build
