@@ -1,3 +1,7 @@
+// Projet final INF1015
+// Auteurs : Rezki, Imane 2118881 - Rahimi, Kasra 2118712
+// Équipe : 08
+
 #include "Room.h"
 
 Room::Room() : 

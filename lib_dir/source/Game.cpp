@@ -1,3 +1,7 @@
+// Projet final INF1015
+// Auteurs : Rezki, Imane 2118881 - Rahimi, Kasra 2118712
+// Équipe : 08
+
 #include "Game.h"
 
 Game::Game() :
@@ -42,6 +46,7 @@ void Game::printAllNeighbors() {
 
 void Game::printNeighbor(Direction side) {
     Room* neighbor = currentRoom_->getAdjacentRoomPtr(side);
+    // condition verifies if locked before printing neighbor && second condition in if
     if (neighbor != nullptr) {
         std::cout << neighbor->getName() << " is to the ";
         switch (side) {
