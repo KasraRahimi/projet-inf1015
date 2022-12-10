@@ -121,10 +121,12 @@ void Game::processCommande(std::string command) {
                 printCurrentRoom();
             }
     
-        } else if (action == "quit" && nArguments == 1)
+        } else if (action == "quit" && nArguments == 1) {
+            std::cout << "\033[91mThank you for your visit!\nNow leaving...\n\n" << std::endl;
             isRunning_ = false;
-        else
+        } else {
             printUnknownCommand();
+        }
     }
 }
 
