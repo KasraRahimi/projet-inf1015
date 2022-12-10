@@ -14,7 +14,6 @@ Game::Game(Room &defaultRoom, const std::string &name) :
 }
 
 std::string Game::getUserInput() {
-    std::cout << std::endl;
     std::cout << "> ";
     std::string command;
     std::getline(std::cin, command);
@@ -31,6 +30,7 @@ void Game::printCurrentRoom() {
     std::cout << "~~ " << currentRoom_->getName() << " ~~" << std::endl;
     std::cout << currentRoom_->getDescription() << std::endl;
     printAllNeighbors();
+    std::cout << std::endl;
 }
 
 void Game::printAllNeighbors() {
@@ -115,9 +115,9 @@ void Game::processCommande(std::string command) {
             }
 
             if (currentRoom_ == ptrCurrentRoom)
-                std::cout << "cannot go there" << std::endl;
+                std::cout << "cannot go there" << std::endl << std::endl;
             else {
-                std::cout << output << std::endl;
+                std::cout << output << std::endl << std::endl;
                 printCurrentRoom();
             }
     
@@ -133,5 +133,5 @@ bool Game::isRunning() const {
 }
 
 void Game::printUnknownCommand() {
-    std::cout << "unknown command" << std::endl;
+    std::cout << "unknown command" << std::endl << std::endl;
 }
