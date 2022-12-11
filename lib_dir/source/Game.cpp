@@ -127,15 +127,24 @@ void Game::movingRoomsProcess(std::string direction) {
 }
 
 void Game::processCommande(std::string command) {
-    std::map<std::string, std::function<void(std::string)>> commands = { 
-        {"go", [=](std::string direction) { movingRoomsProcess(direction); }},
-        {"look", [=](std::string direction) { printCurrentRoom(); }},
-        {"quit", [=](std::string direction) { endingGameProcess(); }},
+    std::map<std::string, std::function<void(std::string)>> commandsOneOperand = { 
+        {"go", [=](std::string direction) { movingRoomsProcess(direction); } }
     };
+
+    std::map<std::string, std::function<void(void)> > commandsNoOperand = { 
+        {"look", [=]() { printCurrentRoom(); } },
+        {"quit", [=]() { endingGameProcess();} }
+    };
+
     std::vector<std::string> instruction = stringToVectorOfWords(command);
-    std::string action = instruction[0];
-    std::string parameter = instruction[1];
-    commands[action](parameter);
+    std::size_t nArguments = instruction.size();
+
+    if (nArguments == 1) {
+        commandsNoOperand[instruction[0]]();
+    }
+    else {
+        commandsOneOperand[instruction[0]](instruction[1]);
+    }
 }
 
 bool Game::isRunning() const {
