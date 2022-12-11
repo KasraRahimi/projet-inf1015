@@ -1,8 +1,7 @@
 #pragma once
 #include <iostream>
 #include <vector>
-using vecOfStrings = std::vector<std::string>;
-
+#include "Game.h"
 class Item {
 public:
     Item() = default;
@@ -12,6 +11,6 @@ public:
     bool isInKeyWords(std::string word);
 private:
     std::string name_, description_;
-    vecOfStrings keyWords;
+    Words keyWords;
     bool isTakeable_;
 };
