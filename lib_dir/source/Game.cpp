@@ -143,7 +143,12 @@ void Game::processCommande(std::string command) {
     else
         currentArguments_ = arguments;
     
-    commands[currentInstruction_]();
+    try {
+        commands[currentInstruction_]();
+    } catch(const std::bad_function_call& e) {
+        printUnknownCommand();
+    }
+    
 }
 
 bool Game::isRunning() const {
