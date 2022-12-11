@@ -1,6 +1,8 @@
 #pragma once
 #include "Room.h"
 #include <vector>
+#include "string.h"
+#include <functional>
 #include <map>
 
 #define CYAN "\033[96m"
