@@ -135,30 +135,9 @@ void Game::processCommande(std::string command) {
     std::vector<std::string> instruction = stringToVectorOfWords(command);
     std::string action = instruction[0];
     std::string parameter = instruction[1];
-    commands[action](parameter);       // this allows commands with 2 operands and more, but will ONLY take the first one, must be in keyWords vector of item
+    commands[action](parameter);
 }
 
-// alternative but requires one more of if - else :
-// std::map<std::string, std::function<void(std::string)> > commandsOneOperand = { 
-//     {"go", [=](std::string direction) { movingRoomsProcess(direction); } }
-// };
-
-// std::map<std::string, std::function<void(void)> > commandsNoOperand = { 
-//     {"look", [=]() { printCurrentRoom(); } },
-//     {"quit", [=]() { endingGameProcess();} }
-// };
-
-// std::vector<std::string> instruction = stringToVectorOfWords(command);
-// std::size_t nArguments = instruction.size();
-// std::string action = instruction[0];
-// std::string parameter = instruction[1];
-
-// if (nArguments == 1) {
-//     commandsNoOperand[action]();
-// }
-// else {
-//     commandsOneOperand[action](parameter);
-// }
 
 bool Game::isRunning() const {
     return isRunning_;
