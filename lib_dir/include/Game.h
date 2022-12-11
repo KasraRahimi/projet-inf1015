@@ -1,6 +1,7 @@
 #pragma once
 #include "Room.h"
 #include <vector>
+#include <map>
 
 #define CYAN "\033[96m"
 #define RED "\033[91m"
@@ -25,5 +26,8 @@ private:
     void printAllNeighbors();
     void printNeighbor(Direction side);
     void printUnknownCommand();
+    void endingGameProcess();
+    void movingRoomsProcess(std::string direction);
+    Direction castingOperandToDirection(const char direction[1]);
     Words stringToVectorOfWords(std::string sentence);
 };

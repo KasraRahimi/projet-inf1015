@@ -36,6 +36,9 @@ void Room::addRoom(Room &room, Direction side) {
             westRoom_ = &room;
             room.eastRoom_ = this;
             break;
+        case Direction::VOID:
+        default:
+            break;
     }
 }
 
@@ -69,6 +72,7 @@ Room* Room::getAdjacentRoomPtr(Direction side) const {
         case Direction::WEST:
             return westRoom_;
             break;
+        case Direction::VOID:
         default:
             return nullptr;
             break;

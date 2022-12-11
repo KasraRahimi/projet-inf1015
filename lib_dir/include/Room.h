@@ -2,11 +2,12 @@
 #include <iostream>
 #include <memory>
 
-enum class Direction {
-    NORTH,
-    EAST,
-    SOUTH,
-    WEST
+enum class Direction : char  {
+    NORTH = 'N',
+    EAST = 'E',
+    SOUTH = 'S',
+    WEST = 'W',
+    VOID = 'V'
 };
 
 class Room {

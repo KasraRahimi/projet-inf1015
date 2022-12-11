@@ -56,7 +56,8 @@ void Game::printNeighbor(Direction side) {
                 break;
             case Direction::WEST:
                 std::cout << "West (W)" << std::endl;
-                break;      
+                break;
+            case Direction::VOID:     
             default:
                 break;
         }
@@ -81,52 +82,73 @@ std::vector<std::string> Game::stringToVectorOfWords(std::string command) {
     return words;
 }
 
+void Game::endingGameProcess(){
+    std::cout << RED << "Thank you for your visit!\nNow leaving...\n\n" << COLOR_LESS << std::endl;
+    isRunning_ = false;
+}
+
+Direction Game::castingOperandToDirection(const char direction[1]) {
+	if (direction[0] != 'N' && direction[0] != 'S' && direction[0] != 'W' && direction[0] != 'E'&& direction[0] != 'V') {
+        return Direction::VOID;
+    } else {
+        return static_cast<Direction>(direction[0]);
+    }
+}
+
+void Game::movingRoomsProcess(std::string direction) {
+    char directionChar[1];
+    std::strcpy(directionChar, direction.c_str());
+    Direction directionEnum =  castingOperandToDirection(directionChar);
+
+    switch (directionEnum) {
+        case Direction::NORTH:
+            changeRoom(Direction::NORTH);
+            std::cout << "going North" << std::endl << std::endl;
+            break;
+        case Direction::SOUTH:
+            changeRoom(Direction::SOUTH);
+            std::cout << "going South" << std::endl << std::endl;
+            break;
+        case Direction::WEST:
+            changeRoom(Direction::WEST);
+            std::cout << "going West" << std::endl << std::endl;
+            break;
+        case Direction::EAST:
+            changeRoom(Direction::EAST);
+            std::cout << "going East" << std::endl << std::endl;
+            break;
+        case Direction::VOID:
+        default:
+            printUnknownCommand();
+            std::cout << "cannot go there" << std::endl;
+            break;
+        }
+        printCurrentRoom();
+}
+
 void Game::processCommande(std::string command) {
+    std::map<std::string, std::function<void(std::string)> > commands_ = 
+    { 
+        {"go", [=](std::string direction) { movingRoomsProcess(direction); } },
+        {"look", [=](std::string direction) { printCurrentRoom(); } },
+        {"quit", [=](std::string direction) { endingGameProcess();} },
+    };
+
     std::vector<std::string> instruction = stringToVectorOfWords(command);
     std::size_t nArguments = instruction.size();
-    if (nArguments > 2) {
-        printUnknownCommand();
-        return;
-    } else {
-        std::string action = instruction[0];
-        if (action == "look" && nArguments == 1)
-            printCurrentRoom();
-        
-        else if (action == "go" && nArguments == 2) {
-            std::string direction = instruction[1];
-            Room* ptrCurrentRoom = currentRoom_;
+    std::string action = instruction[0];
+    std::string parameter = instruction[1];
 
-            std::string output;
-            if (direction == "N") {
-                changeRoom(Direction::NORTH);
-                output = "going North";
-            } else if (direction == "E") {
-                changeRoom(Direction::EAST);
-                output = "going East";
-            } else if (direction == "S") {
-                changeRoom(Direction::SOUTH);
-                output = "going South";
-            } else if (direction == "W") {
-                changeRoom(Direction::WEST);
-                output = "going West";
-            } else {
-                printUnknownCommand();
-                return;
-            }
+    if (nArguments == 1) {
+        commands_[instruction[0]](instruction[1]);
+    }
 
-            if (currentRoom_ == ptrCurrentRoom)
-                std::cout << "cannot go there" << std::endl << std::endl;
-            else {
-                std::cout << output << std::endl << std::endl;
-                printCurrentRoom();
-            }
-    
-        } else if (action == "quit" && nArguments == 1) {
-            std::cout << RED << "Thank you for your visit!\nNow leaving...\n\n" << COLOR_LESS << std::endl;
-            isRunning_ = false;
-        } else {
-            printUnknownCommand();
-        }
+    else if (nArguments >= 2) {
+        // this allows commands_ with 2 operands and more, but will take the first one
+        // works as long as the keyWords vector is well set up
+        // exemple : black leather jacket
+        // take black <--- if black is in the key word list, it will work
+        commands_[instruction[0]](instruction[1]);
     }
 }
 
