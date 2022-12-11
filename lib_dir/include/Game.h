@@ -1,9 +1,11 @@
 #pragma once
 #include "Room.h"
 #include <vector>
+
 #define CYAN "\033[96m"
 #define RED "\033[91m"
 #define COLOR_LESS "\033[00m"
+using Words = std::vector<std::string>;
 
 class Game {
 public:
@@ -23,5 +25,5 @@ private:
     void printAllNeighbors();
     void printNeighbor(Direction side);
     void printUnknownCommand();
-    std::vector<std::string> stringToVectorOfWords(std::string sentence);
+    Words stringToVectorOfWords(std::string sentence);
 };
