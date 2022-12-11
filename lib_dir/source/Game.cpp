@@ -97,7 +97,7 @@ Direction Game::castingOperandToDirection(const char direction[1]) {
 
 void Game::movingRoomsProcess(std::string direction) {
     char directionChar[1];
-    std::strcpy(directionChar, direction.c_str());
+    strcpy(directionChar, direction.c_str());
     Direction directionEnum =  castingOperandToDirection(directionChar);
 
     switch (directionEnum) {
@@ -127,7 +127,7 @@ void Game::movingRoomsProcess(std::string direction) {
 }
 
 void Game::processCommande(std::string command) {
-    std::map<std::string, std::function<void(std::string)> > commands = { 
+    std::map<std::string, std::function<void(std::string)>> commands = { 
         {"go", [=](std::string direction) { movingRoomsProcess(direction); }},
         {"look", [=](std::string direction) { printCurrentRoom(); }},
         {"quit", [=](std::string direction) { endingGameProcess(); }},
