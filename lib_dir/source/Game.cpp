@@ -95,9 +95,9 @@ Direction Game::castingOperandToDirection(const char direction[1]) {
     }
 }
 
-void Game::movingRoomsProcess(std::string direction) {
+void Game::movingRoomsProcess() {
     char directionChar[1];
-    strcpy(directionChar, direction.c_str());
+    strcpy(directionChar, currentArguments_[0].c_str());
     Direction directionEnum =  castingOperandToDirection(directionChar);
 
     switch (directionEnum) {
@@ -127,24 +127,23 @@ void Game::movingRoomsProcess(std::string direction) {
 }
 
 void Game::processCommande(std::string command) {
-    std::map<std::string, std::function<void(std::string)>> commandsOneOperand = { 
-        {"go", [=](std::string direction) { movingRoomsProcess(direction); } }
-    };
-
-    std::map<std::string, std::function<void(void)> > commandsNoOperand = { 
+    std::map<std::string, std::function<void()>> commands = { 
+        {"go", [=]() { movingRoomsProcess(); } },
         {"look", [=]() { printCurrentRoom(); } },
         {"quit", [=]() { endingGameProcess();} }
     };
 
-    std::vector<std::string> instruction = stringToVectorOfWords(command);
-    std::size_t nArguments = instruction.size();
+    Words currentCommand = stringToVectorOfWords(command);
+    Words arguments(currentCommand.begin() + 1, currentCommand.end());
+    std::size_t nArguments = arguments.size();
 
-    if (nArguments == 1) {
-        commandsNoOperand[instruction[0]]();
-    }
-    else {
-        commandsOneOperand[instruction[0]](instruction[1]);
-    }
+    currentInstruction_ = currentCommand[0];
+    if (nArguments == 0)
+        currentArguments_ = {};
+    else
+        currentArguments_ = arguments;
+    
+    commands[currentInstruction_]();
 }
 
 bool Game::isRunning() const {

@@ -22,6 +22,8 @@ private:
     Room* currentRoom_;
     const std::string name_;
     bool isRunning_;
+    std::string currentInstruction_;
+    Words currentArguments_;
 
     void changeRoom(Direction side);
     void printCurrentRoom();
@@ -29,7 +31,7 @@ private:
     void printNeighbor(Direction side);
     void printUnknownCommand();
     void endingGameProcess();
-    void movingRoomsProcess(std::string direction);
+    void movingRoomsProcess();
     Direction castingOperandToDirection(const char direction[1]);
     Words stringToVectorOfWords(std::string sentence);
 };
