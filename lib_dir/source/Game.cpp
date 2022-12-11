@@ -127,30 +127,38 @@ void Game::movingRoomsProcess(std::string direction) {
 }
 
 void Game::processCommande(std::string command) {
-    std::map<std::string, std::function<void(std::string)> > commands_ = 
-    { 
-        {"go", [=](std::string direction) { movingRoomsProcess(direction); } },
-        {"look", [=](std::string direction) { printCurrentRoom(); } },
-        {"quit", [=](std::string direction) { endingGameProcess();} },
+    std::map<std::string, std::function<void(std::string)> > commands = { 
+        {"go", [=](std::string direction) { movingRoomsProcess(direction); }},
+        {"look", [=](std::string direction) { printCurrentRoom(); }},
+        {"quit", [=](std::string direction) { endingGameProcess(); }},
     };
-
     std::vector<std::string> instruction = stringToVectorOfWords(command);
-    std::size_t nArguments = instruction.size();
     std::string action = instruction[0];
     std::string parameter = instruction[1];
-
-    if (nArguments == 1) {
-        commands_[instruction[0]](instruction[1]);
-    }
-
-    else if (nArguments >= 2) {
-        // this allows commands_ with 2 operands and more, but will take the first one
-        // works as long as the keyWords vector is well set up
-        // exemple : black leather jacket
-        // take black <--- if black is in the key word list, it will work
-        commands_[instruction[0]](instruction[1]);
-    }
+    commands[action](parameter);       // this allows commands with 2 operands and more, but will ONLY take the first one, must be in keyWords vector of item
 }
+
+// alternative but requires one more of if - else :
+// std::map<std::string, std::function<void(std::string)> > commandsOneOperand = { 
+//     {"go", [=](std::string direction) { movingRoomsProcess(direction); } }
+// };
+
+// std::map<std::string, std::function<void(void)> > commandsNoOperand = { 
+//     {"look", [=]() { printCurrentRoom(); } },
+//     {"quit", [=]() { endingGameProcess();} }
+// };
+
+// std::vector<std::string> instruction = stringToVectorOfWords(command);
+// std::size_t nArguments = instruction.size();
+// std::string action = instruction[0];
+// std::string parameter = instruction[1];
+
+// if (nArguments == 1) {
+//     commandsNoOperand[action]();
+// }
+// else {
+//     commandsOneOperand[action](parameter);
+// }
 
 bool Game::isRunning() const {
     return isRunning_;
