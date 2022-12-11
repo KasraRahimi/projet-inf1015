@@ -6,8 +6,8 @@ class Item {
 public:
     Item() = default;
     virtual ~Item() = default;
-    std::string getName() { return name_; }
-    std::string getDescription() { return description_; }
+    std::string getName() const { return name_; }
+    std::string getDescription() const { return description_; }
     bool isInKeyWords(std::string word);
 private:
     std::string name_, description_;
