@@ -23,9 +23,9 @@ $(TRG): $(BLD)
 	ar crs $@ $^
 
 # compilation des fichier .o
-$(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(BLD_DIR)/%.o: $(SRC_DIR)/%.cpp $(INC_DIR)/%.h
 	mkdir -p $(BLD_DIR)
-	$(CC) -g -c $^ -o $@ $(CFlags) -I$(INC_DIR)
+	$(CC) -g -c $< -o $@ $(CFlags) -I$(INC_DIR)
 
 # supprimer les fichiers de build
 clean:
