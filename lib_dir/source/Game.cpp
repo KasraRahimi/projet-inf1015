@@ -100,30 +100,39 @@ void Game::movingRoomsProcess() {
     strcpy(directionChar, currentArguments_[0].c_str());
     Direction directionEnum =  castingOperandToDirection(directionChar);
 
+    Room* previousRoom = currentRoom_;
+    std::string output;
+
     switch (directionEnum) {
         case Direction::NORTH:
             changeRoom(Direction::NORTH);
-            std::cout << "going North" << std::endl << std::endl;
+            output = "going North\n\n";
             break;
         case Direction::SOUTH:
             changeRoom(Direction::SOUTH);
-            std::cout << "going South" << std::endl << std::endl;
+            output = "going South\n\n";
             break;
         case Direction::WEST:
             changeRoom(Direction::WEST);
-            std::cout << "going West" << std::endl << std::endl;
+            output = "going West\n\n";
             break;
         case Direction::EAST:
             changeRoom(Direction::EAST);
-            std::cout << "going East" << std::endl << std::endl;
+            output = "going East\n\n";
             break;
         case Direction::VOID:
         default:
             printUnknownCommand();
-            std::cout << "cannot go there" << std::endl;
+            return;
             break;
-        }
-    printCurrentRoom();
+    }
+    
+    if (currentRoom_ == previousRoom)
+        std::cout << "cannot go there\n\n";
+    else {
+        std::cout << output;
+        printCurrentRoom();
+    }
 }
 
 void Game::processCommande(std::string command) {
