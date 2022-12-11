@@ -14,7 +14,7 @@ Game::Game(Room &defaultRoom, const std::string &name) :
     name_(name),
     isRunning_(true) {
         std::cout << CYAN << ">>> " << name_ << " <<<" << COLOR_LESS << std::endl << std::endl;
-        processCommande("look");
+        processCommand("look");
 }
 
 std::string Game::getUserInput() {
@@ -86,7 +86,7 @@ std::vector<std::string> Game::stringToVectorOfWords(std::string command) {
     return words;
 }
 
-void Game::processCommande(std::string command) {
+void Game::processCommand(std::string command) {
     std::vector<std::string> instruction = stringToVectorOfWords(command);
     std::size_t nArguments = instruction.size();
     if (nArguments > 2) {

@@ -29,7 +29,7 @@ int main() {
 
     while (game.isRunning()) {
         std::string command = game.getUserInput();
-        game.processCommande(command);
+        game.processCommand(command);
     }
     return 0;
 }
