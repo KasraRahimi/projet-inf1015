@@ -123,7 +123,7 @@ void Game::movingRoomsProcess(std::string direction) {
             std::cout << "cannot go there" << std::endl;
             break;
         }
-        printCurrentRoom();
+    printCurrentRoom();
 }
 
 void Game::processCommande(std::string command) {
@@ -137,7 +137,6 @@ void Game::processCommande(std::string command) {
     std::string parameter = instruction[1];
     commands[action](parameter);
 }
-
 
 bool Game::isRunning() const {
     return isRunning_;
