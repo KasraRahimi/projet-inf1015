@@ -11,6 +11,7 @@ Le fichier ``main.cpp`` se trouve dans *exec_dir*. Pour compiler l'exécutable, 
 Idéalement, ce projet se compile sur un système avec linux ou macOS. Par contre, il est toujours possible de compiler ce projet sur windows. D'abord, il faut s'assurer votre système permet l'utilisation des Makefiles. Ensuite, il faut changer les lignes suivantes du Makefile dans *./lib_dir*:
 * 22 - ``mkdir -p $(TRG_DIR)`` -> ``if not exist "$(TRG_DIR)" md $(TRG_DIR)``
 * 27 - ``mkdir -p $(BLD_DIR)`` -> ``if not exist "$(BLD_DIR)" md $(BLD_DIR)``
+
 Ensuite, ce sera possible de compiler le projet sans problème.
 
 ## Opérations du jeux :
