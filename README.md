@@ -2,7 +2,7 @@
 Voici notre projet final, nous sommes Kasra Rahimi 2118712 & Imane Rezki 2118881.
 
 ## libraire
-D'abord, on a un dossier pour la librairie. Ne pas toucher les dossiers *lib_dir/build* et *lib_dir/target*. Ce sont des dossiers de compilation. Ajouter tous les fichiers ``.h`` dans *lib_dir/include* et tous les fichier ``.cpp`` dans *lib_dir/source*. Pour compiler la librairie, il faut tout simplement faire ``make``. Pour supprimer les fichiers de compilation, executer la commande ``make clean``.
+D'abord, on a un dossier pour la librairie. Ne pas toucher les dossiers *lib_dir/build* et *lib_dir/target*. Ce sont des dossiers de compilation. Pour compiler la librairie, il faut tout simplement faire ``make``. Pour supprimer les fichiers de compilation, executer la commande ``make clean``.
 
 ## l'exécutable
 Le fichier ``main.cpp`` se trouve dans *exec_dir*. Pour compiler l'exécutable, il faut juste faire ``make``. Pour simplifier l'exécution, vous pouvez faire ``make run``. Ce dernier va compiler l'exécutable et ensuite l'exécuter. Pour que la compiliation se fasse avec succès, il faut d'abord que la libraire soit compilée. Pour cela, il faut faire un ``make`` lorsque vous vous trouvez dans le dossier *./lib_dir*.
