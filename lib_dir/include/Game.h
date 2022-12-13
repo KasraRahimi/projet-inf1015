@@ -34,4 +34,5 @@ private:
     void movingRoomsProcess();
     Direction castingOperandToDirection(const char direction[1]);
     Words stringToVectorOfWords(std::string sentence);
+    friend class Item;
 };
