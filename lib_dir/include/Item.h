@@ -1,7 +1,6 @@
 #pragma once
-#include <iostream>
-#include <vector>
 #include "Game.h"
+
 class Item {
 public:
     Item() = default;
@@ -9,6 +8,9 @@ public:
     std::string getName() const { return name_; }
     std::string getDescription() const { return description_; }
     bool isInKeyWords(std::string word);
+    virtual void use(Game* game) = 0;
+protected:
+    void addKeyword(std::string keyword);
 private:
     std::string name_, description_;
     Words keyWords;
