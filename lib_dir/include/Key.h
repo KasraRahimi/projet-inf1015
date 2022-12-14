@@ -7,5 +7,5 @@ class Key : public Item {
 private:
     Room* unlockingRoom_;
     Room* lockedRoom_;
-    bool hasBeenUsed;
+    bool hasBeenUsed_;
 };
