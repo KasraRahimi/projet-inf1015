@@ -82,3 +82,7 @@ Room* Room::getAdjacentRoomPtr(Direction side) const {
 bool Room::isLocked() const {
     return isLocked_;
 }
+
+void Room::unlock() {
+    isLocked_ = false;
+}

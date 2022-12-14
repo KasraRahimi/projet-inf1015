@@ -21,6 +21,7 @@ public:
     void setDescription(std::string newDescription);
     Room* getAdjacentRoomPtr(Direction side) const;
     bool isLocked() const;
+    void unlock();
 private:
     std::string name_, description_;
     Room* northRoom_;
