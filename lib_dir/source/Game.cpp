@@ -64,19 +64,19 @@ void Game::printNeighbor(Direction side) {
     }
 }
 
-std::vector<std::string> Game::stringToVectorOfWords(std::string command) {
+Words stringToVectorOfWords(std::string sentence) {
     std::vector<std::string> words;
     std::string word;
-    std::size_t size = command.length();
+    std::size_t size = sentence.length();
     for (std::size_t i = 0; i < size; i++) {
-        if (command[i] == ' ') {
+        if (sentence[i] == ' ') {
             words.push_back(word);
             word = "";
         } else if (i == size - 1) {
-            word += command[i];
+            word += sentence[i];
             words.push_back(word);
         } else {
-            word += command[i];
+            word += sentence[i];
         }
     }
     return words;

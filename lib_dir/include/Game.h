@@ -10,6 +10,8 @@
 #define COLOR_LESS "\033[00m"
 using Words = std::vector<std::string>;
 
+Words stringToVectorOfWords(std::string sentence);
+
 class Game {
 public:
     Game();
@@ -33,6 +35,5 @@ private:
     void endingGameProcess();
     void movingRoomsProcess();
     Direction castingOperandToDirection(const char direction[1]);
-    Words stringToVectorOfWords(std::string sentence);
-    friend class Item;
+    friend class Key;
 };
