@@ -1,4 +1,5 @@
 #include "Room.h"
+#include "Item.h"
 
 Room::Room() : 
     name_("NO NAME"), 
@@ -85,4 +86,29 @@ bool Room::isLocked() const {
 
 void Room::unlock() {
     isLocked_ = false;
+}
+
+void Room::addItem(ItemPtr newItem) {
+    contents_.push_back(move(newItem));
+}
+
+ItemPtr Room::take(std::string keyWord) {
+    for (size_t i = 0; i < contents_.size(); i++) {
+        if (contents_[i]->isInKeyWords(keyWord)) {
+            ItemPtr itemTaken = move(contents_[i]);
+            contents_.erase(contents_.begin() + i);
+            return move(itemTaken);
+        }
+    }
+    return nullptr;
+}
+
+bool Room::use(std::string keyWord) {
+    for (size_t i = 0; i < contents_.size(); i++) {
+        if (contents_[i]->isInKeyWords(keyWord)) {
+            contents_[i]->use();
+            return true;
+        }
+    }
+    return false;
 }
