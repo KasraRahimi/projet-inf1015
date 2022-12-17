@@ -1,6 +1,5 @@
 #pragma once
 #include <iostream>
-#include <vector>
 #include <memory>
 
 enum class Direction : char  {
@@ -10,10 +9,6 @@ enum class Direction : char  {
     WEST = 'W',
     VOID = 'V'
 };
-
-class Item;
-using ItemPtr = std::unique_ptr<Item>;
-using Items = std::vector<ItemPtr>;
 
 class Room {
 public:
@@ -27,9 +22,6 @@ public:
     Room* getAdjacentRoomPtr(Direction side) const;
     bool isLocked() const;
     void unlock();
-    void addItem(ItemPtr newItem);
-    ItemPtr take(std::string keyWord);
-    bool use(std::string keyWord);
 private:
     std::string name_, description_;
     Room* northRoom_;
@@ -37,5 +29,4 @@ private:
     Room* southRoom_;
     Room* westRoom_;
     bool isLocked_;
-    Items contents_;
 };

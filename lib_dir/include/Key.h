@@ -2,8 +2,8 @@
 #include "Item.h"
 
 class Key : public Item {
-    Key(std::string name, std::string desc, Room &unlockingRoom, Room &lockedRoom, Game &game);
-    void use();
+    Key(std::string name, std::string desc, Room &unlockingRoom, Room &lockedRoom);
+    void use(Game* game);
 private:
     Room* unlockingRoom_;
     Room* lockedRoom_;

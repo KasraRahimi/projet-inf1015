@@ -1,5 +1,6 @@
 #pragma once
 #include "Room.h"
+#include <vector>
 #include "string.h"
 #include <functional>
 #include <map>
@@ -25,7 +26,6 @@ private:
     bool isRunning_;
     std::string currentInstruction_;
     Words currentArguments_;
-    Items inventory_;
 
     void changeRoom(Direction side);
     void printCurrentRoom();
