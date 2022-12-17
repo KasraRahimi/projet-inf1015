@@ -1,9 +1,10 @@
 #include "Item.h"
 
-Item::Item(std::string name, std::string desc, bool isTakeable) :
+Item::Item(std::string name, std::string desc, bool isTakeable, Game& game) :
     name_(name),
     description_(desc),
-    isTakeable_(isTakeable) {
+    isTakeable_(isTakeable),
+    game_(&game) {
         keyWords_ = stringToVectorOfWords(name);
 }
 
