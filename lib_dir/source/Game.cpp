@@ -227,10 +227,14 @@ void Game::takeItem() {
     }
     for (std::string& keyWord : currentArguments_) {
         ItemPtr itemPtr = currentRoom_->getInventory().take(keyWord);
-        if (itemPtr != nullptr) {
+        if (itemPtr != nullptr && itemPtr->isTakeable()) {
             std::cout << "You took the " << itemPtr->getName() << std::endl;
             inventory_->addItem(std::move(itemPtr));
             std::cout << std::endl;
+            return;
+        } else if (itemPtr != nullptr) {
+            std::cout << "The " << itemPtr->getName() << " can't be taken" << std::endl << std::endl;
+            currentRoom_->getInventory().addItem(std::move(itemPtr));
             return;
         }
     }
