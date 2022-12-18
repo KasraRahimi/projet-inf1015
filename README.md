@@ -22,5 +22,9 @@ Ensuite, ce sera possible de compiler le projet sans problème.
   * <kbd>W</kbd> - vers l'Ouest
   * <kbd>E</kbd> - vers l'Est
 
-* <kbd>look</kbd> - re-affiche la description de la pièce dans laquelle se trouve l'utilisateur, ainsi que les directions qu'il peut emprunter pour son prochain déplacement
+* <kbd>look [item]</kbd> - s'il n'y a pas d'argument: re-affiche la description de la pièce dans laquelle se trouve l'utilisateur, ainsi que les directions qu'il peut emprunter pour son prochain déplacement. 
+
+  sinon, ça affiche le nom de l'objet précisé, ainsi que sa description.
+* <kbd>take [item]</kbd> - enlève l'objet précisé de l'inventaire de la salle et l'ajoute à celui du joueur.
+* <kbd>use [item]</kbd> - Utilise l'objet précisé. Ce que ça veut dire dépend du type de l'objet.
 * <kbd>quit</kbd> - fin du jeux
