@@ -9,7 +9,7 @@ ItemPtr Inventory::take(std::string keyWord) {
         if ((*it)->isInKeyWords(keyWord)) {
             ItemPtr output = std::move(*it);
             contents_.erase(it);
-            return std::move(output);
+            return output;
         }
     }
     return nullptr;
