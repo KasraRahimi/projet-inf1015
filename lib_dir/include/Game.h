@@ -16,6 +16,7 @@ class Game {
 public:
     Game();
     Game(Room &defaultRoom, const std::string &name);
+    ~Game();
     std::string getUserInput();
     void processCommande(std::string command);
 
@@ -26,14 +27,23 @@ private:
     bool isRunning_;
     std::string currentInstruction_;
     Words currentArguments_;
+    Inventory* inventory_;
 
     void changeRoom(Direction side);
     void printCurrentRoom();
     void printAllNeighbors();
     void printNeighbor(Direction side);
+    void printRoomInventory();
+
     void printUnknownCommand();
     void endingGameProcess();
     void movingRoomsProcess();
     Direction castingOperandToDirection(const char direction[1]);
+
+    void look();
+    void takeItem();
+    void useItem();
+
+
     friend class Key;
 };

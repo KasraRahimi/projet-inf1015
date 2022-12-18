@@ -1,4 +1,5 @@
 #include "Game.h"
+#include "Inventory.h"
 
 Game::Game() :
     currentRoom_(nullptr),
@@ -8,7 +9,8 @@ Game::Game() :
 Game::Game(Room &defaultRoom, const std::string &name) :
     currentRoom_(&defaultRoom),
     name_(name),
-    isRunning_(true) {
+    isRunning_(true),
+    inventory_(new Inventory()) {
         std::cout << CYAN << ">>> " << name_ << " <<<" << COLOR_LESS << std::endl << std::endl;
         processCommande("look");
 }
@@ -30,6 +32,7 @@ void Game::printCurrentRoom() {
     std::cout << "~~ " << currentRoom_->getName() << " ~~" << std::endl;
     std::cout << currentRoom_->getDescription() << std::endl;
     printAllNeighbors();
+    printRoomInventory();
     std::cout << std::endl;
 }
 
@@ -138,7 +141,7 @@ void Game::movingRoomsProcess() {
 void Game::processCommande(std::string command) {
     std::map<std::string, std::function<void()>> commands = { 
         {"go", [=]() { movingRoomsProcess(); } },
-        {"look", [=]() { printCurrentRoom(); } },
+        {"look", [=]() { look(); } },
         {"quit", [=]() { endingGameProcess();} }
     };
 
@@ -166,4 +169,37 @@ bool Game::isRunning() const {
 
 void Game::printUnknownCommand() {
     std::cout << RED << "unknown command" << COLOR_LESS << std::endl << std::endl;
+}
+
+void Game::look() {
+    if (currentArguments_.size() == 0)
+        printCurrentRoom();
+    else {
+        for (std::string& keyWord : currentArguments_) {
+            if (currentRoom_->getInventory().look(keyWord)) {
+                std::cout << std::endl;
+                return;
+            }
+            else if (inventory_->look(keyWord)) {
+                std::cout << std::endl;
+                return;
+            }
+        }
+        printUnknownCommand();
+    }
+}
+
+Game::~Game() {
+    delete inventory_;
+}
+
+void Game::printRoomInventory() {
+    std::cout << "In the " << currentRoom_->getName() << " there is : ";
+    if (currentRoom_->getInventory().size() == 0)
+        std::cout << "nothing" << std::endl;
+    else {
+        std::cout << std::endl;
+        for (ItemPtr& item : currentRoom_->getInventory())
+            std::cout << "\ta " << item->getName() << std::endl;
+    }
 }
