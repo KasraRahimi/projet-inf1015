@@ -3,11 +3,12 @@ CC=g++
 CFlags=-Wall -std=c++17
 
 # les dossiers
-LIB_DIR=-L../lib_dir/target
-INC_DIR=-I../lib_dir/include
+LIB_DIR=../lib_dir
+LIB_TRG_DIR=../lib_dir/target
+INC_DIR=../lib_dir/include
 
 # les fichiers
-LIB=-lProjet
+LIB=Projet
 SRC=main.cpp
 TRG=$(SRC:.cpp=)
 DBG=$(SRC:.cpp=_dbg)
@@ -15,9 +16,13 @@ DBG=$(SRC:.cpp=_dbg)
 # l'executable
 all: $(TRG)
 
+# compiler la librairie
+$(LIB_TRG_DIR)/lib$(LIB).a:
+	cd $(LIB_DIR) && make
+
 # compiler l'executable
-$(TRG): $(SRC)
-	$(CC) $^ -o $@ $(LIB) $(LIB_DIR) $(INC_DIR)
+$(TRG): $(SRC) $(LIB_TRG_DIR)/lib$(LIB).a
+	$(CC) $^ -o $@ -l$(LIB) -L$(LIB_TRG_DIR) -I$(INC_DIR)
 
 # executer l'executable
 run: $(TRG)
@@ -25,7 +30,7 @@ run: $(TRG)
 
 #compile debuggable executable
 $(DBG): $(SRC)
-	$(CC) -g $^ -static -o $@ $(LIB) $(LIB_DIR) $(INC_DIR)
+	$(CC) -g $^ -static -o $@ -l$(LIB) -L$(LIB_TRG_DIR) -I$(INC_DIR)
 
 #run debugger
 debug: $(DBG)
