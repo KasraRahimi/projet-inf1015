@@ -24,7 +24,7 @@ std::string Game::getUserInput() {
 
 void Game::changeRoom(Direction side) {
     Room* nextRoom = currentRoom_->getAdjacentRoomPtr(side);
-    if (nextRoom != nullptr)
+    if (nextRoom != nullptr && !(nextRoom->isLocked()))
         currentRoom_ = nextRoom;
 }
 
@@ -46,7 +46,7 @@ void Game::printAllNeighbors() {
 
 void Game::printNeighbor(Direction side) {
     Room* neighbor = currentRoom_->getAdjacentRoomPtr(side);
-    if (neighbor != nullptr) {
+    if (neighbor != nullptr && !(neighbor->isLocked())) {
         std::cout << neighbor->getName() << " is to the ";
         switch (side) {
             case Direction::NORTH:
@@ -144,7 +144,8 @@ void Game::processCommande(std::string command) {
         {"go", [=]() { movingRoomsProcess(); } },
         {"look", [=]() { look(); } },
         {"quit", [=]() { endingGameProcess();} },
-        {"take", [=]() { takeItem(); }}
+        {"take", [=]() { takeItem(); }},
+        {"use", [=]() { useItem(); }}
     };
 
     Words currentCommand = stringToVectorOfWords(command);
@@ -228,6 +229,20 @@ void Game::takeItem() {
             std::cout << std::endl;
             return;
         }
+    }
+    printUnknownCommand();
+}
+
+void Game::useItem() {
+    if (currentArguments_.size() == 0) {
+        printUnknownCommand();
+        return;
+    }
+    for (std::string& keyWord : currentArguments_) {
+        if (currentRoom_->getInventory().use(keyWord))
+            return;
+        else if (inventory_->use(keyWord))
+            return;
     }
     printUnknownCommand();
 }
