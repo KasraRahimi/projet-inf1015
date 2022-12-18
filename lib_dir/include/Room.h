@@ -10,6 +10,8 @@ enum class Direction : char  {
     VOID = 'V'
 };
 
+class Inventory;
+
 class Room {
 public:
     Room();
@@ -22,6 +24,8 @@ public:
     Room* getAdjacentRoomPtr(Direction side) const;
     bool isLocked() const;
     void unlock();
+    Inventory& getInventory() { return *inventory_; }
+    ~Room();
 private:
     std::string name_, description_;
     Room* northRoom_;
@@ -29,4 +33,5 @@ private:
     Room* southRoom_;
     Room* westRoom_;
     bool isLocked_;
+    Inventory* inventory_;
 };

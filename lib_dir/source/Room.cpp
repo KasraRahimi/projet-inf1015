@@ -1,4 +1,5 @@
 #include "Room.h"
+#include "Inventory.h"
 
 Room::Room() : 
     name_("NO NAME"), 
@@ -16,7 +17,8 @@ Room::Room(std::string name, std::string description, bool isLocked) :
     eastRoom_(nullptr),
     southRoom_(nullptr),
     westRoom_(nullptr),
-    isLocked_(isLocked) {}
+    isLocked_(isLocked),
+    inventory_(new Inventory()) {}
 
 void Room::addRoom(Room &room, Direction side) {
     switch (side) {
@@ -85,4 +87,8 @@ bool Room::isLocked() const {
 
 void Room::unlock() {
     isLocked_ = false;
+}
+
+Room::~Room() {
+    delete inventory_;
 }
