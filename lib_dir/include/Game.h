@@ -34,6 +34,7 @@ private:
     void printAllNeighbors();
     void printNeighbor(Direction side);
     void printRoomInventory();
+    void printUserInventory();
 
     void printUnknownCommand();
     void endingGameProcess();

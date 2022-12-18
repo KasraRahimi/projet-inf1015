@@ -33,6 +33,7 @@ void Game::printCurrentRoom() {
     std::cout << currentRoom_->getDescription() << std::endl;
     printAllNeighbors();
     printRoomInventory();
+    printUserInventory();
     std::cout << std::endl;
 }
 
@@ -142,7 +143,8 @@ void Game::processCommande(std::string command) {
     std::map<std::string, std::function<void()>> commands = { 
         {"go", [=]() { movingRoomsProcess(); } },
         {"look", [=]() { look(); } },
-        {"quit", [=]() { endingGameProcess();} }
+        {"quit", [=]() { endingGameProcess();} },
+        {"take", [=]() { takeItem(); }}
     };
 
     Words currentCommand = stringToVectorOfWords(command);
@@ -199,7 +201,33 @@ void Game::printRoomInventory() {
         std::cout << "nothing" << std::endl;
     else {
         std::cout << std::endl;
-        for (ItemPtr& item : currentRoom_->getInventory())
-            std::cout << "\ta " << item->getName() << std::endl;
+        currentRoom_->getInventory().printContents();
     }
+}
+
+void Game::printUserInventory() {
+    std::cout << "You have : ";
+    if (inventory_->size() == 0)
+        std::cout << "nothing" << std::endl;
+    else {
+        std::cout << std::endl;
+        inventory_->printContents();
+    }
+}
+
+void Game::takeItem() {
+    if (currentArguments_.size() == 0) {
+        printUnknownCommand();
+        return;
+    }
+    for (std::string& keyWord : currentArguments_) {
+        ItemPtr itemPtr = currentRoom_->getInventory().take(keyWord);
+        if (itemPtr != nullptr) {
+            std::cout << "You took the " << itemPtr->getName() << std::endl;
+            inventory_->addItem(std::move(itemPtr));
+            std::cout << std::endl;
+            return;
+        }
+    }
+    printUnknownCommand();
 }
