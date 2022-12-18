@@ -4,6 +4,7 @@
 
 #include "Game.h"
 #include "Key.h"
+#include "Stairs.h"
 #include "Inventory.h"
 
 int main() {
@@ -33,6 +34,8 @@ int main() {
     Room bathroom("bathroom",
         "This is the fanciest bathroom I've ever seen in my life. \
         The toilet is made of gold! The toilet paper is made of $100 bills!");
+    Room basement("basement",
+        "This place is humid and dark. There are boxes everywhere but nothing worth taking. The pipes are leaking water onto the floor. I don't like it here");
 
     livingRoom.addRoom(foyer, Direction::SOUTH);
     livingRoom.addRoom(kitchen, Direction::NORTH);
@@ -66,11 +69,16 @@ int main() {
         hallway2,
         study,
         game);
+    auto stairsPtr = std::make_unique<Stairs>("slightly moldy stairway", 
+        "These stairs seem questionable. They're not well maintened.",
+        basement,
+        bedroom,
+        game);
 
     kitchen.getInventory().addItem(std::move(pianoRoomKeyPtr));
     closet.getInventory().addItem(std::move(narniaKeyPtr));
     narnia.getInventory().addItem(std::move(studyKeyPtr));
-
+    basement.getInventory().addItem(std::move(stairsPtr));
     while (game.isRunning()) {
         std::string command = game.getUserInput();
         game.processCommand(command);
