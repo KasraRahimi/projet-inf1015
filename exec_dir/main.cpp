@@ -1,4 +1,6 @@
 #include "Game.h"
+#include "Key.h"
+#include "Inventory.h"
 
 int main() {
     Room livingRoom("Living Room",
@@ -22,6 +24,12 @@ int main() {
 
     const std::string name = "INF1015 KASRA & IMANE'S ROOM ADVENTURE";
     Game game(foyer, name);
+
+    kitchen.getInventory().addItem(std::make_unique<Key>("small sticky blue key",
+        "This key is blue and sticky. It's uncomfortable to touch. It seems rather small.",
+        livingRoom,
+        hallway,
+        game));
 
     while (game.isRunning()) {
         std::string command = game.getUserInput();
