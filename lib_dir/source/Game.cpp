@@ -1,3 +1,7 @@
+// Projet final INF1015
+// Auteurs : Rezki, Imane 2118881 - Rahimi, Kasra 2118712
+// Équipe : 08
+
 #include "Game.h"
 #include "Inventory.h"
 
@@ -12,7 +16,7 @@ Game::Game(Room &defaultRoom, const std::string &name) :
     isRunning_(true),
     inventory_(new Inventory()) {
         std::cout << CYAN << ">>> " << name_ << " <<<" << COLOR_LESS << std::endl << std::endl;
-        processCommande("look");
+        processCommand("look");
 }
 
 std::string Game::getUserInput() {
@@ -139,7 +143,7 @@ void Game::movingRoomsProcess() {
     }
 }
 
-void Game::processCommande(std::string command) {
+void Game::processCommand(std::string command) {
     std::map<std::string, std::function<void()>> commands = { 
         {"go", [=]() { movingRoomsProcess(); } },
         {"look", [=]() { look(); } },

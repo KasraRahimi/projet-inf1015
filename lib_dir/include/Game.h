@@ -18,7 +18,7 @@ public:
     Game(Room &defaultRoom, const std::string &name);
     ~Game();
     std::string getUserInput();
-    void processCommande(std::string command);
+    void processCommand(std::string command);
 
     bool isRunning() const;
 private:

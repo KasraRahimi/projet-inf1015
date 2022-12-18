@@ -1,3 +1,7 @@
+// Projet final INF1015
+// Auteurs : Rezki, Imane 2118881 - Rahimi, Kasra 2118712
+// Équipe : 08
+
 #include "Game.h"
 #include "Key.h"
 #include "Inventory.h"
@@ -40,7 +44,7 @@ int main() {
 
     while (game.isRunning()) {
         std::string command = game.getUserInput();
-        game.processCommande(command);
+        game.processCommand(command);
     }
     return 0;
 }
