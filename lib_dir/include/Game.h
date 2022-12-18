@@ -47,4 +47,5 @@ private:
 
 
     friend class Key;
+    friend class Stairs;
 };
