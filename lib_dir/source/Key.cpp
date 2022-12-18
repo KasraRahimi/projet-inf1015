@@ -4,6 +4,7 @@ Key::Key(std::string name, std::string desc, Room &unlockingRoom, Room &lockedRo
     Item(name, desc, true),
     unlockingRoom_(&unlockingRoom),
     lockedRoom_(&lockedRoom),
+    hasBeenUsed_(false),
     game_(&game) {}
 
 void Key::use() {
