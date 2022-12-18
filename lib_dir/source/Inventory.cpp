@@ -35,3 +35,13 @@ bool Inventory::look(std::string keyWord) {
     }
     return false;
 }
+
+void Inventory::printContents(bool isTabulated) {
+    std::string prefix;
+    if (isTabulated)
+        prefix = "\t";
+    else
+        prefix = "";
+    for (ItemPtr& itemPtr : contents_)
+        std::cout << prefix << "a " << itemPtr->getName() << std::endl;
+}

@@ -12,6 +12,7 @@ public:
     bool use(std::string keyWord);
     bool look(std::string keyWord);
     size_t size() { return contents_.size(); }
+    void printContents(bool isTabulated = true);
     std::vector<ItemPtr>::iterator begin() { return contents_.begin(); }
     std::vector<ItemPtr>::iterator end() { return contents_.end(); }
 private:
