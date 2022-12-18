@@ -8,11 +8,13 @@ int main() {
     Room kitchen("Kitchen",
         "The kitchen has a fridge, an oven, and many pots and pans!");
     Room hallway("Hallway",
-        "The hallway connects the living room to the bathroom. It's kinda dark. The light went out.");
+        "The hallway connects the living room to the bathroom. It's kinda dark. The light went out.",
+        true);
     Room bathroom("Bathroom",
         "The bathroom has a toilet and a bathtub. It's rather small.");
     Room bedroom("Bedroom",
-        "The bedroom is large. It has a bed and a desk. Your closet can be found here.");
+        "The bedroom is large. It has a bed and a desk. Your closet can be found here.",
+        true);
     Room foyer("Foyer",
         "The foyer is at the entrance of the house. There are many more rooms to explore!");
 
@@ -29,6 +31,11 @@ int main() {
         "This key is blue and sticky. It's uncomfortable to touch. It seems rather small.",
         livingRoom,
         hallway,
+        game));
+    kitchen.getInventory().addItem(std::make_unique<Key>("small dry golden key",
+        "This key is small, but it's golden and majestique. What could it be for?",
+        hallway,
+        bedroom,
         game));
 
     while (game.isRunning()) {
