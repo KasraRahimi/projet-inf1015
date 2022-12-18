@@ -37,7 +37,7 @@ int main() {
         hallway,
         game));
     kitchen.getInventory().addItem(std::make_unique<Key>("small dry golden key",
-        "This key is small, but it's golden and majestique. What could it be for?",
+        "This key is small, but it's golden and majestic. What could it be for?",
         hallway,
         bedroom,
         game));
