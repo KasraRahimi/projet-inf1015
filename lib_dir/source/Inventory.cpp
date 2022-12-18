@@ -24,3 +24,14 @@ bool Inventory::use(std::string keyWord) {
     }
     return false;
 }
+
+bool Inventory::look(std::string keyWord) {
+    for (ItemPtr& item : contents_) {
+        if (item->isInKeyWords(keyWord)) {
+            std::cout << "## " << item->getName() << " ##" << std::endl;
+            std::cout << item->getDescription() << std::endl;
+            return true;
+        }
+    }
+    return false;
+}
