@@ -2,6 +2,7 @@
 #include "Item.h"
 
 class Key : public Item {
+public:
     Key(std::string name, std::string desc, Room &unlockingRoom, Room &lockedRoom, Game& game);
     void use();
 private:
