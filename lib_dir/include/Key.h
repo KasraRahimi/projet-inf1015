@@ -9,4 +9,5 @@ private:
     Room* unlockingRoom_;
     Room* lockedRoom_;
     bool hasBeenUsed_;
+    Game* game_;
 };
