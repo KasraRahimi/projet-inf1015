@@ -74,11 +74,18 @@ int main() {
         basement,
         bedroom,
         game);
+    auto slidePtr = std::make_unique<Passage>("neat out-of place slide",
+        "This slide is suspicious. It leads to a dark place and looks like it has no place in a study.",
+        study,
+        basement,
+        game,
+        false);
 
     kitchen.getInventory().addItem(std::move(pianoRoomKeyPtr));
     closet.getInventory().addItem(std::move(narniaKeyPtr));
     narnia.getInventory().addItem(std::move(studyKeyPtr));
     basement.getInventory().addItem(std::move(stairsPtr));
+    study.getInventory().addItem(std::move(slidePtr));
     while (game.isRunning()) {
         std::string command = game.getUserInput();
         game.processCommand(command);
