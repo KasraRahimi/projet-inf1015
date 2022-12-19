@@ -73,6 +73,8 @@ void Game::printNeighbor(Direction side) {
 }
 
 Words stringToVectorOfWords(std::string sentence) {
+    if (sentence.length() == 0)
+        return { "invalid command" };
     std::vector<std::string> words;
     std::string word;
     std::size_t size = sentence.length();
