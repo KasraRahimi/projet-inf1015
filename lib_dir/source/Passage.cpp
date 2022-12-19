@@ -1,17 +1,17 @@
-#include "Stairs.h"
+#include "Passage.h"
 #include "Inventory.h"
 
-Stairs::Stairs(std::string name, std::string desc, Room& source, Room& destination, Game& game, bool isAddingToDestination) :
+Passage::Passage(std::string name, std::string desc, Room& source, Room& destination, Game& game, bool isAddingToDestination) :
     Item(name, desc, false),
     destination_(&destination),
     game_(&game) {
         if (isAddingToDestination) {
-            auto stairPtr = std::make_unique<Stairs>(name, desc, destination, source, game, false);
+            auto stairPtr = std::make_unique<Passage>(name, desc, destination, source, game, false);
             destination.getInventory().addItem(std::move(stairPtr));
         }
 }
 
-void Stairs::use() {
+void Passage::use() {
     std::cout << "You've used the " << getName()
     << " and gone to the " << destination_->getName() << std::endl << std::endl;
     game_->currentRoom_ = destination_;
