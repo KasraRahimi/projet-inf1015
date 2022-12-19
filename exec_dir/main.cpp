@@ -4,7 +4,7 @@
 
 #include "Game.h"
 #include "Key.h"
-#include "Stairs.h"
+#include "Passage.h"
 #include "Inventory.h"
 
 int main() {
@@ -69,7 +69,7 @@ int main() {
         hallway2,
         study,
         game);
-    auto stairsPtr = std::make_unique<Stairs>("slightly moldy stairway", 
+    auto stairsPtr = std::make_unique<Passage>("slightly moldy stairway", 
         "These stairs seem questionable. They're not well maintened.",
         basement,
         bedroom,
