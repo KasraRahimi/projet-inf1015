@@ -146,14 +146,6 @@ void Game::movingRoomsProcess() {
 }
 
 void Game::processCommand(std::string command) {
-    std::map<std::string, std::function<void()>> commands = { 
-        {"go", [=]() { movingRoomsProcess(); } },
-        {"look", [=]() { look(); } },
-        {"quit", [=]() { endingGameProcess();} },
-        {"take", [=]() { takeItem(); }},
-        {"use", [=]() { useItem(); }}
-    };
-
     Words currentCommand = stringToVectorOfWords(command);
     Words arguments(currentCommand.begin() + 1, currentCommand.end());
     std::size_t nArguments = arguments.size();
@@ -165,7 +157,7 @@ void Game::processCommand(std::string command) {
         currentArguments_ = arguments;
     
     try {
-        commands[currentInstruction_]();
+        commands_[currentInstruction_]();
     } catch(const std::bad_function_call& e) {
         printUnknownCommand();
     }

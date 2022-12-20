@@ -28,6 +28,13 @@ private:
     std::string currentInstruction_;
     Words currentArguments_;
     Inventory* inventory_;
+    std::map<std::string, std::function<void()>> commands_ = { 
+        {"go", [=]() { movingRoomsProcess(); } },
+        {"look", [=]() { look(); } },
+        {"quit", [=]() { endingGameProcess();} },
+        {"take", [=]() { takeItem(); }},
+        {"use", [=]() { useItem(); }}
+    };
 
     void changeRoom(Direction side);
     void printCurrentRoom();
