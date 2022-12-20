@@ -4,6 +4,7 @@
 #include "string.h"
 #include <functional>
 #include <map>
+#include <algorithm>
 
 #define CYAN "\033[96m"
 #define RED "\033[91m"

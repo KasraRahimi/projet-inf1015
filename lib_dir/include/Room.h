@@ -3,11 +3,11 @@
 #include <memory>
 
 enum class Direction : char  {
-    NORTH = 'N',
-    EAST = 'E',
-    SOUTH = 'S',
-    WEST = 'W',
-    VOID = 'V'
+    NORTH = 'n',
+    EAST = 'e',
+    SOUTH = 's',
+    WEST = 'w',
+    VOID = 'v'
 };
 
 class Inventory;

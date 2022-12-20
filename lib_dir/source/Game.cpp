@@ -98,7 +98,7 @@ void Game::endingGameProcess(){
 }
 
 Direction Game::castingOperandToDirection(const char direction[1]) {
-	if (direction[0] != 'N' && direction[0] != 'S' && direction[0] != 'W' && direction[0] != 'E'&& direction[0] != 'V') {
+	if (direction[0] != 'n' && direction[0] != 's' && direction[0] != 'w' && direction[0] != 'e' && direction[0] != 'v') {
         return Direction::VOID;
     } else {
         return static_cast<Direction>(direction[0]);
@@ -150,6 +150,7 @@ void Game::movingRoomsProcess() {
 }
 
 void Game::processCommand(std::string command) {
+    std::transform(command.begin(), command.end(), command.begin(), tolower);
     Words currentCommand = stringToVectorOfWords(command);
     Words arguments(currentCommand.begin() + 1, currentCommand.end());
     std::size_t nArguments = arguments.size();
