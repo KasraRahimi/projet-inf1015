@@ -106,6 +106,10 @@ Direction Game::castingOperandToDirection(const char direction[1]) {
 }
 
 void Game::movingRoomsProcess() {
+    if (currentArguments_.size() != 1 || currentArguments_[0].length() != 1) {
+        printUnknownCommand();
+        return;
+    }
     char directionChar[1];
     strcpy(directionChar, currentArguments_[0].c_str());
     Direction directionEnum =  castingOperandToDirection(directionChar);
