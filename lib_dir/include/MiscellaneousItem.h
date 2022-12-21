@@ -152,5 +152,7 @@ void TwoUsesItem::use() {
             std::cout << getFirstMessage() << std::endl;
             isUsedOnce_ = true;
         }
+    } else {
+        std::cout << "the " << getName() << " cannot be used in this room. You may want to try elsewhere. " << "\n\n";
     }
 }

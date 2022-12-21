@@ -82,20 +82,23 @@ int main() {
         false);
 
     auto pianoPtr = std::make_unique<MiscellaneousItem>("suspicious old piano", 
-    "This is an antique Steinway & Sons with 85 keys. It looks like any dark and sinister, probably from the late 1860s.", 
+    "This is an antique Steinway & Sons with 85 keys. It looks like dark and sinister, probably from the late 1860s.", 
     false, 
     "You play some chords on the piano. It does not sound very well.");
     pianoRoom.getInventory().addItem(std::move(pianoPtr));
 
     auto paintingPtr = std::make_unique<MiscellaneousItem>("sinister painting", 
-    "It depicts an anguished mother sheep standing over the dead body of its lamb, surrounded by a multitude of crows.", 
+    "A mother sheep stands over the dead body of its lamb, surrounded by a murder. It is a gruesome landscape.", 
     false, 
     "Nothing to do here, but you're creeped out. Try resting someplace less intense.");
     pianoRoom.getInventory().addItem(std::move(paintingPtr));
 
-    auto candlePtr = std::make_unique<MiscellaneousItem>("wax candle", 
-    "The wax steadily melts down unto the saucer.", 
-    true, 
+    auto candlePtr = std::make_unique<TwoUsesItem>("wax candle", 
+    "An unlit wax candle. This could light the way ahead...",
+    true,
+    hallway1,
+    game,
+    "You strike a match and light up the candle. The wax steadily melts down unto the saucer.",
     "You blow out the candle. \033[3mOut, out, brief candle!\033[0m");
     kitchen.getInventory().addItem(std::move(candlePtr));
 
@@ -117,7 +120,7 @@ int main() {
     livingRoom.getInventory().addItem(std::move(clockPtr));
 
     auto telescopePtr = std::make_unique<SingleUseItem>("telescope",
-    "This telescope is quite impressive, you may want to look in when you get the chance.",
+    "This telescope is quite impressive, you may want to \033[3mstudy\033[0m the stars when you get the chance.",
     "You carefully align the telescope in front of the big bay window. You look in and see...\n\t\033[3mthe Christmas Star !\033[0m\n",
     study,
     game);
@@ -129,6 +132,7 @@ int main() {
     narnia,
     game);
     bathroom.getInventory().addItem(std::move(panFlutePtr));
+// Add Aslan giving Patron Saint Key to the realm honorary member if pan flute is played twice
 
     auto srewDriverPtr = std::make_unique<SingleUseItem>("screw driver",
     "Standard srew driver. Nothing special here.",
