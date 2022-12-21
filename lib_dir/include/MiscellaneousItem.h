@@ -3,8 +3,10 @@
 
 class MiscellaneousItem : public Item {
 public:
-    MiscellaneousItem() : Item() {}
-    MiscellaneousItem(std::string name, std::string desc, bool isTakeable, std::string usedDescription) : Item(name, desc, isTakeable) { usedDescription_ = usedDescription; }
+    MiscellaneousItem(std::string name, std::string desc, bool isTakeable, std::string usedDescription) : 
+        Item(name, desc, isTakeable),
+        usedDescription_(usedDescription)
+        {}
     void use();
     std::string getUseMessage() const { return usedDescription_; }
 private:
@@ -19,7 +21,7 @@ void MiscellaneousItem::use() {
 class Clock : public Item {
 public:
     Clock() : Item() {}
-    Clock(std::string name, std::string desc, bool isTakeable) : Item(name, desc, isTakeable) { currentTime_ = defaultTime; }
+    Clock(std::string name, std::string desc, bool isTakeable) : Item(name, desc, isTakeable), currentTime_(defaultTime) {}
     void use();
     void showTime() const;
     void resetTime() { currentTime_ = defaultTime; }
@@ -49,7 +51,7 @@ void Clock::use() {
 class Book : public Item {
 public:
     Book() : Item() {}
-    Book(std::string name, std::string desc, bool isTakeable, std::string passage) : Item(name, desc, isTakeable) { passage_ = passage; }
+    Book(std::string name, std::string desc, bool isTakeable, std::string passage) : Item(name, desc, isTakeable), passage_(passage) {}
     void use();
     std::string getPassage() { return passage_; }
 private:
@@ -64,13 +66,15 @@ void Book::use() {
 
 class NoteBook : public Item {
 public:
-    NoteBook() : Item() {}
-    NoteBook(std::string name, std::string desc, bool isTakeable, int nbLines) : Item(name, desc, isTakeable) { lineCount_ = 0; maxLineCount_ = nbLines; }
+    NoteBook(std::string name, std::string desc, bool isTakeable, int nbLines) : 
+        Item(name, desc, isTakeable),
+        lineCount_(0),
+        maxLineCount_(nbLines)
+        {}
     void use();
     void getContents();
 private:
-    int lineCount_;
-    int maxLineCount_;
+    int lineCount_, maxLineCount_;
     std::map<int,std::string> addedNotes_ = {};
 };
 
@@ -98,7 +102,14 @@ void NoteBook::use() {
 
 class SingleUseItem : public Item {
 public:
-    SingleUseItem(std::string name, std::string desc, std::string usedDescription, Room &destinationRoom, Game& game) : Item(name, desc, true), destinationRoom_(&destinationRoom), game_(&game) { usedDescription_ = usedDescription; hasBeenUsed_ = false; }
+    SingleUseItem(std::string name, std::string desc, bool isTakeable, std::string usedDescription, Room &destinationRoom, Game& game) : 
+        Item(name, desc, isTakeable), 
+        destinationRoom_(&destinationRoom), 
+        game_(&game),
+        hasBeenUsed_(false),
+        usedDescription_(usedDescription)
+        {}
+
     void use();
     std::string getUseMessage() const { return usedDescription_; }
 private:

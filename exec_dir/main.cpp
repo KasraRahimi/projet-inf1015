@@ -121,6 +121,7 @@ int main() {
 
     auto telescopePtr = std::make_unique<SingleUseItem>("telescope",
     "This telescope is quite impressive, you may want to \033[3mstudy\033[0m the stars when you get the chance.",
+    true,
     "You carefully align the telescope in front of the big bay window. You look in and see...\n\t\033[3mthe Christmas Star !\033[0m\n",
     study,
     game);
@@ -128,6 +129,7 @@ int main() {
 
     auto panFlutePtr = std::make_unique<SingleUseItem>("pan flute",
     "There are many different sized glass pipes. You can see your hands through it, almost like fish under water.",
+    true,
     "\n\033[3ma beautiful melody erupts!\033[0m\n Birds and animals curiously approach, curious to see the newcomer.\nYou see a magestic lion coming towards you.\n",
     narnia,
     game);
@@ -136,6 +138,7 @@ int main() {
 
     auto srewDriverPtr = std::make_unique<SingleUseItem>("screw driver",
     "Standard srew driver. Nothing special here.",
+    true,
     "You successfully fixed the broken faucet. Whoever lives here will greatly appreciate it.",
     kitchen,
     game);
@@ -152,6 +155,7 @@ int main() {
 
     auto ceramicMaskPtr = std::make_unique<SingleUseItem>("white half-face ceramic mask",
     "Eerie looking mask...it reminds you of something, but you can't quite place it.",
+    true,
     "The light shakes, you hear a booming voice singing an aria. Shaken, you quickly put the mask away.",
     bathroom,
     game);
