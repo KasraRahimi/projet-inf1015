@@ -43,5 +43,5 @@ void Inventory::printContents(bool isTabulated) {
     else
         prefix = "";
     for (ItemPtr& itemPtr : contents_)
-        std::cout << prefix << "• a " << itemPtr->getName() << std::endl;
+        std::cout << prefix << "- a " << itemPtr->getName() << std::endl;
 }
