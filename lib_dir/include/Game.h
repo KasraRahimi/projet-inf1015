@@ -58,4 +58,5 @@ private:
 
     friend class Key;
     friend class Passage;
+    friend class SingleUseItem;
 };

@@ -3,6 +3,7 @@
 // Équipe : 08
 
 #include "Game.h"
+#include "MiscellaneousItem.h"
 #include "Key.h"
 #include "Passage.h"
 #include "Inventory.h"
@@ -13,10 +14,10 @@ int main() {
     Room livingRoom("living room",
         "This room is so cozy. There's a couch and TV!");
     Room kitchen("kitchen", 
-        "Pots, pans, and dishes everywhere! Someone should really clean up here.");
-    Room hallway1("hallway1",
+        "Pots, pans, and dishes everywhere! Even the faucet is broken! Someone should really fix up this room. ");
+    Room hallway1("first hallway",
         "This is the section of the hallway connected to the living room.");
-    Room hallway2("hallway2",
+    Room hallway2("second hallway",
         "This section of the hallway is connected to the bedroom.");
     Room bedroom("bedroom",
         "A nice bed, a good amount of storage. Hmm this seems like a nice bedroom");
@@ -79,6 +80,75 @@ int main() {
         basement,
         game,
         false);
+
+    auto pianoPtr = std::make_unique<MiscellaneousItem>("suspicious old piano", 
+    "This is an antique Steinway & Sons with 85 keys. It looks like any dark and sinister, probably from the late 1860s.", 
+    false, 
+    "You play some chords on the piano. It does not sound very well.");
+    pianoRoom.getInventory().addItem(std::move(pianoPtr));
+
+    auto paintingPtr = std::make_unique<MiscellaneousItem>("sinister painting", 
+    "It depicts an anguished mother sheep standing over the dead body of its lamb, surrounded by a multitude of crows.", 
+    false, 
+    "You're creeped out, try resting someplace less intense.");
+    pianoRoom.getInventory().addItem(std::move(paintingPtr));
+
+    auto candlePtr = std::make_unique<MiscellaneousItem>("wax candle", 
+    "The wax steadily melts down unto the saucer.", 
+    true, 
+    "You blow out the candle. \033[3mOut, out, brief candle!\033[0m");
+    kitchen.getInventory().addItem(std::move(candlePtr));
+
+    auto bookPtr = std::make_unique<Book>("beautiful leatherbound book", 
+    "It is resting on the bedside table. The pages open to Act V, Scene 5.", 
+    true, 
+    "\n\t\033[3mTomorrow, and tomorrow, and tomorrow, \n\tCreeps in this petty pace from day to day, \n\tTo the last syllable of recorded time...\n\033[0m");
+    bedroom.getInventory().addItem(std::move(bookPtr));
+
+    auto bedPtr = std::make_unique<MiscellaneousItem>("comfortable bed", 
+    "It looks soft and pillowy, almost cartoonish", 
+    false, 
+    "You tuck yourself into bed. \033[3mYou sleep for what feels like a very long time, yet hardly any time has passed...\033[0m");
+    bedroom.getInventory().addItem(std::move(bedPtr));
+
+    auto clockPtr = std::make_unique<Clock>("small pocket watch", 
+    "It is silver and encrusted in rubies, a bit rusted but still beautiful.", 
+    true);
+    livingRoom.getInventory().addItem(std::move(clockPtr));
+
+    auto telescopePtr = std::make_unique<SingleUseItem>("telescope",
+    "This telescope is quite impressive, you may want to look in when you get the chance.",
+    "You carefully align the telescope in front of the big bay window. You look in and see...\n\t\033[3mthe Christmas Star !\033[0m\n",
+    study,
+    game);
+    basement.getInventory().addItem(std::move(telescopePtr));
+
+    auto panFlutePtr = std::make_unique<SingleUseItem>("pan flute",
+    "There are many different sized glass pipes. You can see your hands through it, almost like fish under water.",
+    "\n\033[3ma beautiful melody erupts!\033[0m\n Birds and animals curiously approach, curious to see the newcomer.\n",
+    narnia,
+    game);
+    bathroom.getInventory().addItem(std::move(panFlutePtr));
+
+    auto srewDriverPtr = std::make_unique<SingleUseItem>("screw driver",
+    "Standard srew driver. Nothing special here.",
+    "You successfully fixed the broken faucet. Whoever lives here will greatly appreciate it.",
+    kitchen,
+    game);
+    kitchen.getInventory().addItem(std::move(srewDriverPtr));
+
+    auto ceramicMaskPtr = std::make_unique<SingleUseItem>("white half-face ceramic mask",
+    "Eerie looking mask...it reminds you of something, but you can't quite place it.",
+    "The lightshakes, you hear a booming voice singing an aria. Shaken, you quickly put the mask away.",
+    bathroom,
+    game);
+    livingRoom.getInventory().addItem(std::move(ceramicMaskPtr));
+
+    auto noteBookPtr = std::make_unique<NoteBook>("small nearly full notebook", 
+    "This notebook is nearly full, you could write down a couple things if you'd like.", 
+    true, 
+    3);
+    livingRoom.getInventory().addItem(std::move(noteBookPtr));
 
     kitchen.getInventory().addItem(std::move(pianoRoomKeyPtr));
     closet.getInventory().addItem(std::move(narniaKeyPtr));
