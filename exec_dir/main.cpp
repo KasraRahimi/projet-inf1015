@@ -134,8 +134,7 @@ int main() {
     narnia,
     game);
     bathroom.getInventory().addItem(std::move(panFlutePtr));
-// Add Aslan giving Patron Saint Key to the realm honorary member if pan flute is played twice
-
+    
     auto srewDriverPtr = std::make_unique<SingleUseItem>("screw driver",
     "Standard srew driver. Nothing special here.",
     true,
