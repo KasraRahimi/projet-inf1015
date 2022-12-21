@@ -119,3 +119,38 @@ void SingleUseItem::use() {
         std::cout << "the " << getName() << " cannot be used in this room. You may want to try elsewhere. " << "\n\n";
     }
 }
+
+class TwoUsesItem : public Item {
+public:
+    TwoUsesItem(std::string name, std::string desc, bool isTakeable, Room &destinationRoom, Game& game, std::string usedDescription, std::string secondTimeUsedDescription) : 
+        Item(name, desc, isTakeable),
+        destinationRoom_(&destinationRoom), 
+        game_(&game),
+        usedDescription_(usedDescription),
+        secondTimeUsedDescription_(secondTimeUsedDescription),
+        isUsedOnce_(false),
+        isUsedTwice_(false)
+        {}
+    void use();
+    std::string getFirstMessage() const { return usedDescription_; }
+    std::string getSecondMessage() const { return secondTimeUsedDescription_; }
+private:
+    Room* destinationRoom_;
+    Game* game_;
+    std::string usedDescription_, secondTimeUsedDescription_;
+    bool isUsedOnce_,isUsedTwice_;
+};
+
+void TwoUsesItem::use() {
+    if (game_->currentRoom_ == destinationRoom_) {
+        if (isUsedTwice_) {
+            std::cout << "the " << getName() << " has completed it's use.\n\n";
+        } else if (isUsedOnce_) {
+            std::cout << getSecondMessage() << std::endl;
+            isUsedTwice_ = true;
+        } else if (!isUsedOnce_) {
+            std::cout << getFirstMessage() << std::endl;
+            isUsedOnce_ = true;
+        }
+    }
+}

@@ -90,7 +90,7 @@ int main() {
     auto paintingPtr = std::make_unique<MiscellaneousItem>("sinister painting", 
     "It depicts an anguished mother sheep standing over the dead body of its lamb, surrounded by a multitude of crows.", 
     false, 
-    "You're creeped out, try resting someplace less intense.");
+    "Nothing to do here, but you're creeped out. Try resting someplace less intense.");
     pianoRoom.getInventory().addItem(std::move(paintingPtr));
 
     auto candlePtr = std::make_unique<MiscellaneousItem>("wax candle", 
@@ -125,7 +125,7 @@ int main() {
 
     auto panFlutePtr = std::make_unique<SingleUseItem>("pan flute",
     "There are many different sized glass pipes. You can see your hands through it, almost like fish under water.",
-    "\n\033[3ma beautiful melody erupts!\033[0m\n Birds and animals curiously approach, curious to see the newcomer.\n",
+    "\n\033[3ma beautiful melody erupts!\033[0m\n Birds and animals curiously approach, curious to see the newcomer.\nYou see a magestic lion coming towards you.\n",
     narnia,
     game);
     bathroom.getInventory().addItem(std::move(panFlutePtr));
@@ -137,9 +137,18 @@ int main() {
     game);
     kitchen.getInventory().addItem(std::move(srewDriverPtr));
 
+    auto dirtyPotPtr = std::make_unique<TwoUsesItem>("dirty copper pot",
+    "The pot is covered in grime, it could use some cleaning.",
+    true,
+    kitchen,
+    game,
+    "You successfully cleaned the dirty pot. You may use it to make a delicious meal.",
+    "You have prepared a delicious Christmas Eve meal, if only you had someone to share it with...\n\033[3myou hear laughter in the walls\033[0m");
+    kitchen.getInventory().addItem(std::move(dirtyPotPtr));
+
     auto ceramicMaskPtr = std::make_unique<SingleUseItem>("white half-face ceramic mask",
     "Eerie looking mask...it reminds you of something, but you can't quite place it.",
-    "The lightshakes, you hear a booming voice singing an aria. Shaken, you quickly put the mask away.",
+    "The light shakes, you hear a booming voice singing an aria. Shaken, you quickly put the mask away.",
     bathroom,
     game);
     livingRoom.getInventory().addItem(std::move(ceramicMaskPtr));
