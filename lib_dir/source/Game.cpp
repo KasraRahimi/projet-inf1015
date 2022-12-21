@@ -246,10 +246,14 @@ void Game::useItem() {
         return;
     }
     for (std::string& keyWord : currentArguments_) {
-        if (currentRoom_->getInventory().use(keyWord))
+        if (currentRoom_->getInventory().use(keyWord)) {
+            std::cout << std::endl;
             return;
-        else if (inventory_->use(keyWord))
+        }
+        else if (inventory_->use(keyWord)) {
+            std::cout << std::endl;
             return;
+        }
     }
     printUnknownCommand();
 }

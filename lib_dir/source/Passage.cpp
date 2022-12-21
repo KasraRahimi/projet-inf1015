@@ -13,7 +13,7 @@ Passage::Passage(std::string name, std::string desc, Room& source, Room& destina
 
 void Passage::use() {
     std::cout << "You've used the " << getName()
-    << " and gone to the " << destination_->getName() << std::endl << std::endl;
+    << " and gone to the " << destination_->getName() << std::endl;
     game_->currentRoom_ = destination_;
     game_->processCommand("look");
 }
