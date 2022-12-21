@@ -35,7 +35,7 @@ void NoteBook::getContents() {
 
 void NoteBook::use() {
     if (maxLineCount_ != 0) {
-        std::cout << "There are " << maxLineCount_ << " empty lines, you write :";
+        std::cout << "There are " << maxLineCount_ << " empty lines, you write: ";
         std::string sentence;
         std::getline(std::cin, sentence);
         std::cout << "\nYou put down your pen..." << std::endl;
@@ -43,27 +43,27 @@ void NoteBook::use() {
         lineCount_++;
         maxLineCount_--;
     } else {
-        std::cout << "\nThe notebook is complete, you read back your notes :\n" << std::endl;
+        std::cout << "\nThe notebook is complete, you read back your notes:\n" << std::endl;
         getContents();
     }
 }
 
 void SingleUseItem::use() {
     if (hasBeenUsed_) {
-        std::cout << "the " << getName() << " has already been used.\n\n";
+        std::cout << "the " << getName() << " has already been used.\n";
         return;
     } else if (game_->currentRoom_ == destinationRoom_) {
         std::cout << getUseMessage() << std::endl;
         hasBeenUsed_ = true;
     } else {
-        std::cout << "the " << getName() << " cannot be used in this room. You may want to try elsewhere. " << "\n\n";
+        std::cout << "the " << getName() << " cannot be used in this room. You may want to try elsewhere. " << "\n";
     }
 }
 
 void TwoUsesItem::use() {
     if (game_->currentRoom_ == destinationRoom_) {
         if (isUsedTwice_) {
-            std::cout << "the " << getName() << " has completed it's use.\n\n";
+            std::cout << "the " << getName() << " has completed its use.\n";
         } else if (isUsedOnce_) {
             std::cout << getSecondMessage() << std::endl;
             isUsedTwice_ = true;
@@ -72,6 +72,6 @@ void TwoUsesItem::use() {
             isUsedOnce_ = true;
         }
     } else {
-        std::cout << "the " << getName() << " cannot be used in this room. You may want to try elsewhere. " << "\n\n";
+        std::cout << "the " << getName() << " cannot be used in this room. You may want to try elsewhere. " << "\n";
     }
 }
