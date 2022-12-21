@@ -32,8 +32,7 @@ int main() {
         "This room is a little messy, nothing too bad. It's just a little too dark.",
         true);
     Room bathroom("bathroom",
-        "This is the fanciest bathroom I've ever seen in my life. \
-        The toilet is made of gold! The toilet paper is made of $100 bills!");
+        "This is the fanciest bathroom I've ever seen in my life. The toilet is made of gold! The toilet paper is made of $100 bills!");
     Room basement("basement",
         "This place is humid and dark. There are boxes everywhere but nothing worth taking. The pipes are leaking water onto the floor. I don't like it here");
 
