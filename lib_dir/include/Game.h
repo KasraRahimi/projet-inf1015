@@ -45,6 +45,8 @@ private:
     void printUserInventory();
 
     void printUnknownCommand();
+    void printArgumentNumberError();
+
     void endingGameProcess();
     void movingRoomsProcess();
     Direction castingOperandToDirection(const char direction[1]);

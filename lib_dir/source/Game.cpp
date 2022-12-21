@@ -221,7 +221,7 @@ void Game::printUserInventory() {
 
 void Game::takeItem() {
     if (currentArguments_.size() == 0) {
-        printUnknownCommand();
+        printArgumentNumberError();
         return;
     }
     for (std::string& keyWord : currentArguments_) {
@@ -242,7 +242,7 @@ void Game::takeItem() {
 
 void Game::useItem() {
     if (currentArguments_.size() == 0) {
-        printUnknownCommand();
+        printArgumentNumberError();
         return;
     }
     for (std::string& keyWord : currentArguments_) {
@@ -252,4 +252,9 @@ void Game::useItem() {
             return;
     }
     printUnknownCommand();
+}
+
+void Game::printArgumentNumberError() {
+    std::cout << RED << "This command requires one or more arguments." << COLOR_LESS
+    << std::endl << std::endl;
 }
