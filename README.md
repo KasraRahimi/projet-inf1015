@@ -26,5 +26,6 @@ Ensuite, ce sera possible de compiler le projet sans problème.
 
   sinon, ça affiche le nom de l'objet précisé, ainsi que sa description.
 * <kbd>take [item]</kbd> - enlève l'objet précisé de l'inventaire de la salle et l'ajoute à celui du joueur.
+* <kbd>drop [item]</kbd> - enlève l'objet de l'inventaire du jouer et le met dans la salle.
 * <kbd>use [item]</kbd> - Utilise l'objet précisé. Ce que ça veut dire dépend du type de l'objet.
 * <kbd>quit</kbd> - fin du jeux
