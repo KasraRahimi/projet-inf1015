@@ -34,7 +34,8 @@ private:
         {"look", [=]() { look(); } },
         {"quit", [=]() { endingGameProcess();} },
         {"take", [=]() { takeItem(); }},
-        {"use", [=]() { useItem(); }}
+        {"use", [=]() { useItem(); }},
+        {"drop", [=]() { dropItem(); }}
     };
 
     void changeRoom(Direction side);
@@ -54,6 +55,7 @@ private:
     void look();
     void takeItem();
     void useItem();
+    void dropItem();
 
 
     friend class Key;

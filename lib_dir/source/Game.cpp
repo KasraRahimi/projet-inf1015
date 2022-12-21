@@ -262,3 +262,20 @@ void Game::printArgumentNumberError() {
     std::cout << RED << "This command requires one or more arguments." << COLOR_LESS
     << std::endl << std::endl;
 }
+
+void Game::dropItem() {
+    if (currentArguments_.size() == 0) {
+        printArgumentNumberError();
+        return;
+    }
+    for (const std::string& keyWord : currentArguments_) {
+        ItemPtr droppedItem = inventory_->take(keyWord);
+        if (droppedItem != nullptr) {
+            std::cout << "You just dropped the " << droppedItem->getName()
+            << " in the " << currentRoom_->getName() << std::endl << std::endl;
+            currentRoom_->getInventory().addItem(std::move(droppedItem));
+        } else {
+            printUnknownCommand();
+        }
+    }
+}
