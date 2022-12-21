@@ -22,7 +22,7 @@ $(LIB_TRG_DIR)/lib$(LIB).a:
 
 # compiler l'executable
 $(TRG): $(SRC) $(LIB_TRG_DIR)/lib$(LIB).a
-	$(CC) $^ -o $@ -l$(LIB) -L$(LIB_TRG_DIR) -I$(INC_DIR)
+	$(CC) $^ -o $@ -l$(LIB) -L$(LIB_TRG_DIR) -I$(INC_DIR) $(CFlags)
 
 # executer l'executable
 run: $(TRG)
@@ -30,7 +30,7 @@ run: $(TRG)
 
 #compile debuggable executable
 $(DBG): $(SRC)
-	$(CC) -g $^ -static -o $@ -l$(LIB) -L$(LIB_TRG_DIR) -I$(INC_DIR)
+	$(CC) -g $^ -static -o $@ -l$(LIB) -L$(LIB_TRG_DIR) -I$(INC_DIR) $(CFlags)
 
 #run debugger
 debug: $(DBG)
