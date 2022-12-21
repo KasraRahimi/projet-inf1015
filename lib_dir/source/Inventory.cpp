@@ -4,7 +4,7 @@ void Inventory::addItem(ItemPtr itemPtr) {
     contents_.push_back(std::move(itemPtr));
 }
 
-ItemPtr Inventory::take(std::string keyWord) {
+ItemPtr Inventory::take(const std::string &keyWord) {
     for (auto it = contents_.begin(); it != contents_.end(); ++it) {
         if ((*it)->isInKeyWords(keyWord)) {
             ItemPtr output = std::move(*it);
@@ -15,7 +15,7 @@ ItemPtr Inventory::take(std::string keyWord) {
     return nullptr;
 }
 
-bool Inventory::use(std::string keyWord) {
+bool Inventory::use(const std::string &keyWord) {
     for (auto it = contents_.begin(); it != contents_.end(); ++it) {
         if ((*it)->isInKeyWords(keyWord)) {
             (*it)->use();
@@ -25,7 +25,7 @@ bool Inventory::use(std::string keyWord) {
     return false;
 }
 
-bool Inventory::look(std::string keyWord) {
+bool Inventory::look(const std::string &keyWord) {
     for (ItemPtr& item : contents_) {
         if (item->isInKeyWords(keyWord)) {
             std::cout << "## " << item->getName() << " ##" << std::endl;

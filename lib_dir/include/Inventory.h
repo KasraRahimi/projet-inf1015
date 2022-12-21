@@ -8,9 +8,9 @@ class Inventory {
 public:
     Inventory() = default;
     void addItem(ItemPtr itemPtr);
-    ItemPtr take(std::string keyWord);
-    bool use(std::string keyWord);
-    bool look(std::string keyWord);
+    ItemPtr take(const std::string &keyWord);
+    bool use(const std::string &keyWord);
+    bool look(const std::string &keyWord);
     size_t size() { return contents_.size(); }
     void printContents(bool isTabulated = true);
     std::vector<ItemPtr>::iterator begin() { return contents_.begin(); }
