@@ -12,7 +12,7 @@ Idéalement, ce projet se compile sur un système avec linux ou macOS. Par contr
 * 22 - ``mkdir -p $(TRG_DIR)`` -> ``if not exist "$(TRG_DIR)" md $(TRG_DIR)``
 * 27 - ``mkdir -p $(BLD_DIR)`` -> ``if not exist "$(BLD_DIR)" md $(BLD_DIR)``
 
-Ensuite, ce sera possible de compiler le projet sans problème.
+Ensuite, il faut enlever le ``./`` devant le nom des dossier. Par la suite, ce sera possible de compiler le projet sans problème.
 
 ## Opérations du jeux :
 * <kbd>go [chosen direction]</kbd> -  l'utilisateur se déplace vers la direction spécifiée
